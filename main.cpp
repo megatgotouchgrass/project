@@ -8,6 +8,7 @@ int main()
 {
     Init init;
     Authentication auth;
+
     bool userExist;
     char systemRun;
 
