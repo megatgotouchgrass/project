@@ -18,16 +18,12 @@ int main()
         userExist = init.checkIfUserExist();
 
         if (userExist)
-        {
             auth.userLogIn();
-        }
         else
-        {
             auth.userSignUp();
-        }
 
-        init.greetings();
-        cout << "Do you wish to go back to home menu? (y/n): ";
+        cout << endl
+             << "Do you wish to go back to home menu? (y/n): ";
         cin >> systemRun;
 
     } while (systemRun == 'Y' || systemRun == 'y');

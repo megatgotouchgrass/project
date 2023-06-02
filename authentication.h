@@ -15,6 +15,8 @@ public:
     void userSignUp();
     void userLogIn();
     string passwordInput();
+    void updateDatabase(); // to add up new user
+    bool checkDatabase();  // to determine whether the user is alreaedy in the system
 };
 
 #endif

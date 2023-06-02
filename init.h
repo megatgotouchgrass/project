@@ -6,6 +6,7 @@ class Init
 public:
     void greetings();
     bool checkIfUserExist();
+    void mainMenu();
 };
 
 #endif

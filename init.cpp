@@ -35,3 +35,7 @@ bool Init::checkIfUserExist()
 
     return response2;
 };
+
+void Init::mainMenu()
+{
+}

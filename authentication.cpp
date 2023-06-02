@@ -2,6 +2,8 @@
 #include <iostream>
 #include <conio.h>
 #include <string>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -15,38 +17,39 @@ enum TT_Input
 
 string Authentication::passwordInput()
 {
-    string ipt = "";
-    char ipt_ch;
+    string password = "";
+    char password_ch;
     while (true)
     {
-        ipt_ch = getch();
+        password_ch = getch();
 
-        if (ipt_ch < TT_Input::RETURN && ipt_ch != TT_Input::BACKSPACE)
+        if (password_ch < TT_Input::RETURN && password_ch != TT_Input::BACKSPACE)
         {
             cout << endl;
-            return ipt;
+            return password;
         }
 
         // Check whether the user
         // pressed backspace
-        if (ipt_ch == TT_Input::BACKSPACE)
+        if (password_ch == TT_Input::BACKSPACE)
         {
 
-            // Check if ipt is empty or not
-            if (ipt.length() == 0)
+            // Check if password is empty or not
+            if (password.length() == 0)
                 continue;
             else
             {
 
                 // Removes last character
-                ipt.pop_back();
+                password.pop_back();
 
                 continue;
             }
         }
-        ipt.push_back(ipt_ch);
+        password.push_back(password_ch);
     }
 }
+
 void Authentication::userSignUp()
 {
     greetings();
@@ -66,18 +69,84 @@ void Authentication::userSignUp()
 
         fflush(stdin);
     }
+
+    updateDatabase();
 };
 
 void Authentication::userLogIn()
 {
-
     greetings();
     char continueOperation;
+    bool accessed;
 
     cout << "Do you wish to login to the existing account? (y/n) : ";
     cin >> continueOperation;
 
     if (continueOperation == 'Y' || continueOperation == 'y')
     {
+
+        greetings();
+        cout << "Enter your username: ";
+        cin >> username;
+
+        cout << "Enter your password: ";
+        password = passwordInput();
+
+        accessed = checkDatabase();
+    }
+
+    if (accessed)
+    {
+        greetings();
+        cout << "Welcome !";
     }
 };
+
+void Authentication::updateDatabase()
+{
+    ofstream file("users.csv", ios_base::app);
+    if (!file)
+    {
+        cerr << "Error opening file" << endl;
+    }
+
+    if (file.tellp() != 0)
+    {
+        file << endl;
+    }
+
+    file << username << ", " << password << endl;
+    file.close();
+
+    cout << "Updated!";
+}
+
+bool Authentication::checkDatabase()
+{
+    string line, fileUsername, filePassword;
+    ifstream file("users.csv");
+    bool found;
+
+    if (!file)
+    {
+        cerr << "Error opening file" << endl;
+        return false;
+    };
+
+    while (getline(file, line))
+    {
+        stringstream ss(line);
+        getline(ss, username, ',');
+        getline(ss, password, ',');
+
+        if (username == fileUsername && password == filePassword)
+        {
+            found = true;
+            break;
+        }
+    }
+
+    file.close();
+
+    return found;
+}
