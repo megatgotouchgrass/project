@@ -6,6 +6,8 @@ class Init
 public:
     void greetings();
     bool checkIfUserExist();
+
+protected:
     void mainMenu();
 };
 

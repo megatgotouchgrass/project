@@ -98,7 +98,7 @@ void Authentication::userLogIn()
     if (accessed)
     {
         greetings();
-        cout << "Welcome !";
+        mainMenu();
     }
 };
 
@@ -109,16 +109,19 @@ void Authentication::updateDatabase()
     {
         cerr << "Error opening file" << endl;
     }
-
-    if (file.tellp() != 0)
+    else
     {
-        file << endl;
+        if (file.tellp() != 0)
+        {
+            file << endl;
+        }
+
+        file << username << ", " << password << endl;
+        file.close();
+
+        greetings();
+        mainMenu();
     }
-
-    file << username << ", " << password << endl;
-    file.close();
-
-    cout << "Updated!";
 }
 
 bool Authentication::checkDatabase()
