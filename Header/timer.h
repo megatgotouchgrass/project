@@ -13,7 +13,7 @@ private:
     thread displayThread_;
 
 public:
-    Timer(chrono::seconds duration) : duration_(duration){};
+    Timer(chrono::seconds duration);
     void start();
     void displayTimer(chrono::seconds remainingTime);
 };

@@ -37,7 +37,7 @@ bool Init::checkIfUserExist()
     return response2;
 };
 
-void Init::mainMenu()
+int Init::mainMenu()
 {
     int choice;
 
@@ -49,7 +49,8 @@ void Init::mainMenu()
          << endl;
     cout << "2 : Restaurant" << endl;
     cout << "3 : Merchandise Shop" << endl;
-    cout << "4 : Queue Time" << endl;
+    cout << "4 : Queue Time" << endl
+         << endl;
 
     cin >> choice;
 
@@ -72,4 +73,6 @@ void Init::mainMenu()
         cout << "Invalid choice. Please select a valid option." << endl;
         break;
     }
+
+    return choice;
 }

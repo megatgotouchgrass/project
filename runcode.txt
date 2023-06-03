@@ -1,0 +1,1 @@
+cd "c:\Users\aan\coding\Semester 2\Project" ; if ($?) { g++ -Iheader -Isource source/*.cpp -o main } ; if ($?) { .\"main" }        

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "init.h"
 #include "authentication.h"
-#include "attraction.h"
+#include "entertainment.h"
 
 using namespace std;
 
@@ -9,8 +9,9 @@ int main()
 {
     Init init;
     Authentication auth;
-    Attraction attraction;
+    Entertainment entertainment;
 
+    int selection;
     bool userExist;
     bool accessMainMenu;
     char systemRun;
@@ -26,7 +27,23 @@ int main()
             accessMainMenu = auth.userSignUp();
 
         if (accessMainMenu)
-            init.mainMenu();
+        {
+            selection = init.mainMenu();
+
+            switch (selection)
+            {
+            case 1:
+            {
+                entertainment.mainMenu();
+            }
+            case 2:
+            {
+            }
+            case 3:
+            {
+            }
+            }
+        }
 
         cout << endl
              << "Do you wish to go back to home menu? (y/n): ";
