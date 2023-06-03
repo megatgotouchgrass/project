@@ -1,6 +1,7 @@
 #include <iostream>
 #include "init.h"
 #include "authentication.h"
+#include "attraction.h"
 
 using namespace std;
 
@@ -8,6 +9,7 @@ int main()
 {
     Init init;
     Authentication auth;
+    Attraction attraction;
 
     bool userExist;
     char systemRun;

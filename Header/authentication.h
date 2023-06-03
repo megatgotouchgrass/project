@@ -12,10 +12,10 @@ private:
     string password;
 
 public:
-    void userSignUp();
-    void userLogIn();
+    bool userSignUp();
+    bool userLogIn();
     string passwordInput();
-    void updateDatabase(); // to add up new user
+    bool updateDatabase(); // to add up new user
     bool checkDatabase();  // to determine whether the user is alreaedy in the system
 };
 

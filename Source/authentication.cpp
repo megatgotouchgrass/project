@@ -50,7 +50,7 @@ string Authentication::passwordInput()
     }
 }
 
-void Authentication::userSignUp()
+bool Authentication::userSignUp()
 {
     greetings();
     char continueOperation;
@@ -68,12 +68,16 @@ void Authentication::userSignUp()
         password = passwordInput();
 
         fflush(stdin);
+        updateDatabase();
+        return true;
     }
-
-    updateDatabase();
+    else
+    {
+        return false;
+    }
 };
 
-void Authentication::userLogIn()
+bool Authentication::userLogIn()
 {
     greetings();
     char continueOperation;
@@ -97,17 +101,21 @@ void Authentication::userLogIn()
 
     if (accessed)
     {
-        greetings();
-        mainMenu();
+        return true;
+    }
+    else
+    {
+        return false;
     }
 };
 
-void Authentication::updateDatabase()
+bool Authentication::updateDatabase()
 {
     ofstream file("users.csv", ios_base::app);
     if (!file)
     {
         cerr << "Error opening file" << endl;
+        return false;
     }
     else
     {
@@ -120,7 +128,7 @@ void Authentication::updateDatabase()
         file.close();
 
         greetings();
-        mainMenu();
+        return true;
     }
 }
 
