@@ -10,6 +10,7 @@ private:
     int waitingTime;
 
 public:
+    Entertainment(){};
     Entertainment(int cap, int wait);
 
     void mainMenu();
