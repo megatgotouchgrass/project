@@ -1,6 +1,5 @@
 #ifndef ENTERTAINMENT_H
 #define ENTERTAINMENT_H
-#include "timer.h"
 #include "init.h"
 #include <chrono>
 
@@ -11,13 +10,10 @@ private:
     int waitingTime;
 
 public:
-    Entertainment() : timer(chrono::seconds(0)){};
     Entertainment(int cap, int wait);
 
-    Timer timer;
-
     void mainMenu();
-    void bookAttraction();
+    void bookEntertainment();
     void displayDetails();
 
     int getCapacity() { return capacity; };

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Entertainment::Entertainment(int cap = 0, int wait = 0) : timer(chrono::seconds(wait))
+Entertainment::Entertainment(int cap = 0, int wait = 0)
 {
      capacity = cap;
      waitingTime = wait;
@@ -17,23 +17,10 @@ void Entertainment::displayDetails()
      cout << "Waiting Time: " << waitingTime << endl;
 }
 
-void Entertainment::bookAttraction()
+void Entertainment::bookEntertainment()
 {
-}
-
-void Entertainment::mainMenu()
-{
-     Init::greetings();
-
-     int choice;
      bool validChoice = false;
-
-     cout << "Choose a Fun Ride: " << endl;
-     cout << "\033[1;35m"; // purple
-     cout << "1. Bumper Cars" << endl;
-     cout << "2. Carousel" << endl;
-     cout << "3. Roller Coaster" << endl;
-     cout << "\033[0m"; // white
+     int choice;
 
      while (!validChoice)
      {
@@ -126,4 +113,17 @@ void Entertainment::mainMenu()
                delete ride;
           }
      }
+}
+void Entertainment::mainMenu()
+{
+     Init::greetings();
+
+     cout << "Choose a Fun Ride: " << endl;
+     cout << "\033[1;35m"; // purple
+     cout << "1. Bumper Cars" << endl;
+     cout << "2. Carousel" << endl;
+     cout << "3. Roller Coaster" << endl;
+     cout << "\033[0m"; // white
+
+     bookEntertainment();
 }
