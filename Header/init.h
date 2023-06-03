@@ -7,7 +7,7 @@ public:
     void greetings();
     bool checkIfUserExist();
 
-protected:
+public:
     void mainMenu();
 };
 

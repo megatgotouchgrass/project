@@ -12,6 +12,7 @@ int main()
     Attraction attraction;
 
     bool userExist;
+    bool accessMainMenu;
     char systemRun;
 
     do
@@ -20,9 +21,12 @@ int main()
         userExist = init.checkIfUserExist();
 
         if (userExist)
-            auth.userLogIn();
+            accessMainMenu = auth.userLogIn();
         else
-            auth.userSignUp();
+            accessMainMenu = auth.userSignUp();
+
+        if (accessMainMenu)
+            init.mainMenu();
 
         cout << endl
              << "Do you wish to go back to home menu? (y/n): ";
