@@ -55,26 +55,30 @@ bool Authentication::userSignUp()
     greetings();
     char continueOperation;
 
-    cout << "Do you wish to create a new account? (y/n) : ";
-    cin >> continueOperation;
-
-    if (continueOperation == 'Y' || continueOperation == 'y')
+    do
     {
-        greetings();
-        cout << "Enter your username: ";
-        cin >> username;
+        cout << "Do you wish to create a new account? (y/n) : ";
+        cin >> continueOperation;
+        if (continueOperation == 'Y' || continueOperation == 'y')
+        {
+            greetings();
+            cout << "Enter your username: ";
+            cin >> username;
 
-        cout << "Enter your password: ";
-        password = passwordInput();
+            cout << "Enter your password: ";
+            password = passwordInput();
 
-        fflush(stdin);
-        updateDatabase();
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+            fflush(stdin);
+            updateDatabase();
+            return true;
+        }
+        else if (continueOperation == 'N' || continueOperation == 'n')
+        {
+            return false;
+        };
+    } while (!(continueOperation == 'Y' || continueOperation == 'y' || continueOperation == 'N' || continueOperation == 'n'));
+
+    return true;
 };
 
 bool Authentication::userLogIn()
@@ -85,19 +89,25 @@ bool Authentication::userLogIn()
 
     cout << "Do you wish to login to the existing account? (y/n) : ";
     cin >> continueOperation;
-
-    if (continueOperation == 'Y' || continueOperation == 'y')
+    do
     {
+        if (continueOperation == 'Y' || continueOperation == 'y')
+        {
 
-        greetings();
-        cout << "Enter your username: ";
-        cin >> username;
+            greetings();
+            cout << "Enter your username: ";
+            cin >> username;
 
-        cout << "Enter your password: ";
-        password = passwordInput();
+            cout << "Enter your password: ";
+            password = passwordInput();
 
-        accessed = checkDatabase();
-    }
+            accessed = checkDatabase();
+        }
+        else if (continueOperation == 'N' || continueOperation == 'n')
+        {
+            return false;
+        }
+    } while (!(continueOperation == 'Y' || continueOperation == 'y' || continueOperation == 'N' || continueOperation == 'n'));
 
     if (accessed)
     {

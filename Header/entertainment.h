@@ -14,7 +14,7 @@ public:
     Entertainment(int cap, int wait);
 
     void mainMenu();
-    void bookEntertainment();
+    virtual void bookEntertainment(); // polymorphism (overriden method)
     void displayDetails();
 
     int getCapacity() { return capacity; };
@@ -31,18 +31,24 @@ public:
     BumperCars() : Entertainment(2, 5)
     {
     }
+
+    void bookEntertainment(); // polymorphism (redefined method)
 };
 
 class Carousel : public Entertainment
 {
 public:
     Carousel() : Entertainment(40, 4) {}
+
+    void bookEntertainment(); // polymorphism (redefined method)
 };
 
 class RollerCoaster : public Entertainment
 {
 public:
     RollerCoaster() : Entertainment(20, 3) {}
+
+    void bookEntertainment(); // polymorphism (redefined method)
 };
 
 #endif

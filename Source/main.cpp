@@ -2,6 +2,8 @@
 #include "init.h"
 #include "authentication.h"
 #include "entertainment.h"
+#include "restaurant.h"
+#include "merchandise.h"
 
 using namespace std;
 
@@ -10,6 +12,8 @@ int main()
     Init init;
     Authentication auth;
     Entertainment entertainment;
+    Restaurant restaurant;
+    Merchandise merchandise;
 
     int selection;
     bool userExist;
@@ -33,17 +37,16 @@ int main()
             switch (selection)
             {
             case 1:
-            {
                 entertainment.mainMenu();
-            }
+                break;
             case 2:
-            {
-            }
+                restaurant.mainMenu();
+                break;
             case 3:
-            {
+                merchandise.mainMenu();
+                break;
             }
-            }
-        }
+        };
 
         cout << endl
              << "Do you wish to go back to home menu? (y/n): ";

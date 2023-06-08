@@ -22,18 +22,25 @@ bool Init::checkIfUserExist()
     char response;
     bool response2;
 
-    cout << "Have you made an account before? (y/n): ";
-    cin >> response;
-
-    if (response == 'Y' || response == 'y')
+    do
     {
-        response2 = true;
-    }
-    else if (response == 'N' || response == 'n')
-    {
-        response2 = false;
-    }
+        cout << "Have you made an account before? (y/n): ";
+        cin >> response;
 
+        if (response == 'Y' || response == 'y')
+        {
+            response2 = true;
+        }
+        else if (response == 'N' || response == 'n')
+        {
+            response2 = false;
+        }
+        else
+        {
+            cout << "Wrong input! Please insert again" << endl
+                 << endl;
+        }
+    } while (!(response == 'Y' || response == 'y' || response == 'N' || response == 'n'));
     return response2;
 };
 
@@ -52,6 +59,7 @@ int Init::mainMenu()
     cout << "4 : Queue Time" << endl
          << endl;
 
+    cout << "Selection : ";
     cin >> choice;
 
     // this switch case function was totally not made by chatgpt (i lied)
@@ -61,7 +69,7 @@ int Init::mainMenu()
         cout << "You selected Fun Rides. Enjoy the thrill!" << endl;
         break;
     case 2:
-        cout << "You selected Restaurant. Bon appétit!" << endl;
+        cout << "You selected Restaurant. Bon appetit!" << endl;
         break;
     case 3:
         cout << "You selected Merchandise Shop. Happy shopping!" << endl;
