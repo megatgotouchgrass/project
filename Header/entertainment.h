@@ -32,14 +32,14 @@ public:
 class BumperCars : public Entertainment
 {
 public:
-    BumperCars() : Entertainment(2, 5) {}
+    BumperCars();
     void bookEntertainment(int choice); // polymorphism (redefined method)
 };
 
 class Carousel : public Entertainment
 {
 public:
-    Carousel() : Entertainment(40, 4) {}
+    Carousel();
 
     void bookEntertainment(int choice); // polymorphism (redefined method)
 };
@@ -47,7 +47,7 @@ public:
 class RollerCoaster : public Entertainment
 {
 public:
-    RollerCoaster() : Entertainment(20, 3) {}
+    RollerCoaster();
 
     void bookEntertainment(int choice); // polymorphism (redefined method)
 };
