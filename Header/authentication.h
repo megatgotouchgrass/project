@@ -16,7 +16,8 @@ public:
     bool userLogIn();
     string passwordInput();
     bool updateDatabase(); // to add up new user
-    bool checkDatabase();  // to determine whether the user is alreaedy in the system
+    bool checkDatabase();
+    string getUsername(); // to determine whether the user is alreaedy in the system
 };
 
 #endif

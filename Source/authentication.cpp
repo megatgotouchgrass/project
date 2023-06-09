@@ -171,3 +171,8 @@ bool Authentication::checkDatabase()
 
     return found;
 }
+
+string Authentication::getUsername()
+{
+    return username;
+}
