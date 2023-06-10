@@ -12,12 +12,11 @@ protected:
     int waitingTime;
 
 public:
-    Authentication auth;
     Entertainment(){};
-    Entertainment(int cap, int wait);
 
-    void mainMenu();
-    virtual void bookEntertainment(int choice); // polymorphism (overriden method)
+    string generateUniqueToken();
+    void mainMenu(Authentication &auth);
+    virtual void bookEntertainment(int choice, Authentication &auth); // polymorphism (overriden method)
     void displayDetails();
 
     int getCapacity() { return capacity; };
@@ -33,7 +32,7 @@ class BumperCars : public Entertainment
 {
 public:
     BumperCars();
-    void bookEntertainment(int choice); // polymorphism (redefined method)
+    void bookEntertainment(int choice, Authentication &auth); // polymorphism (redefined method)
 };
 
 class Carousel : public Entertainment
@@ -41,7 +40,7 @@ class Carousel : public Entertainment
 public:
     Carousel();
 
-    void bookEntertainment(int choice); // polymorphism (redefined method)
+    void bookEntertainment(int choice, Authentication &auth); // polymorphism (redefined method)
 };
 
 class RollerCoaster : public Entertainment
@@ -49,7 +48,7 @@ class RollerCoaster : public Entertainment
 public:
     RollerCoaster();
 
-    void bookEntertainment(int choice); // polymorphism (redefined method)
+    void bookEntertainment(int choice, Authentication &auth); // polymorphism (redefined method)
 };
 
 #endif

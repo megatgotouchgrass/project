@@ -3,13 +3,20 @@
 #include <chrono>
 #include <fstream>
 #include <sstream>
+#include <random>
+#include <iomanip>
 
 using namespace std;
 
-Entertainment::Entertainment(int cap = 0, int wait = 0)
+string Entertainment::generateUniqueToken()
 {
-     capacity = cap;
-     waitingTime = wait;
+     random_device rd;
+     mt19937 gen(rd());
+     uniform_int_distribution<int> distribution(100000, 999999);
+     int randomID = distribution(gen);
+     ostringstream oss;
+     oss << setfill('0') << setw(6) << randomID;
+     return oss.str();
 }
 
 void Entertainment::displayDetails()
@@ -18,8 +25,9 @@ void Entertainment::displayDetails()
      cout << "Waiting Time: " << waitingTime << endl;
 }
 
-void Entertainment::bookEntertainment(int choice)
+void Entertainment::bookEntertainment(int choice, Authentication &auth)
 {
+
      Entertainment *entertainment = nullptr;
      switch (choice)
      {
@@ -37,10 +45,10 @@ void Entertainment::bookEntertainment(int choice)
           break;
      }
 
-     entertainment->bookEntertainment(choice);
+     entertainment->bookEntertainment(choice, auth);
 }
 
-void Entertainment::mainMenu()
+void Entertainment::mainMenu(Authentication &auth)
 {
      greetings();
      bool validChoice = false;
@@ -79,18 +87,16 @@ void Entertainment::mainMenu()
           cin >> choice;
      } while (!(choice > 0 && choice < 4));
 
-     bookEntertainment(choice);
+     bookEntertainment(choice, auth);
 }
 
-#include <fstream>
-
-BumperCars::BumperCars() : Entertainment(2, 5)
+BumperCars::BumperCars()
 {
      // Store capacity and waiting time in a CSV file
      ofstream file("entertainment.csv", ios::app); // Open file in append mode
      if (file.is_open())
      {
-          file << "Bumper Cars," << getCapacity() << "," << getTime() << endl; // Write data to the file
+          file << "Bumper Cars," << getCapacity() << " ," << getTime() << endl; // Write data to the file
           file.close();
           cout << "Capacity and waiting time for Bumper Cars stored successfully." << endl;
      }
@@ -100,15 +106,30 @@ BumperCars::BumperCars() : Entertainment(2, 5)
      }
 }
 
-Carousel::Carousel() : Entertainment(40, 4)
+Carousel::Carousel()
 {
      // Store capacity and waiting time in a CSV file
      ofstream file("entertainment.csv", ios::app); // Open file in append mode
      if (file.is_open())
      {
-          file << "Carousel," << getCapacity() << "," << getTime() << endl; // Write data to the file
+          file << "Carousel," << getCapacity() << ", " << getTime() << endl; // Write data to the file
           file.close();
           cout << "Capacity and waiting time for Carousel stored successfully." << endl;
+     }
+     else
+     {
+          cout << "Error: Unable to open the file." << endl;
+     }
+}
+RollerCoaster::RollerCoaster()
+{
+     // Store capacity and waiting time in a CSV file
+     ofstream file("entertainment.csv", ios::app); // Open file in append mode
+     if (file.is_open())
+     {
+          file << "Roller Coaster," << getCapacity() << ", " << getTime() << endl; // Write data to the file
+          file.close();
+          cout << "Capacity and waiting time for Roller Coaster stored successfully." << endl;
      }
      else
      {
@@ -143,7 +164,7 @@ void Entertainment::updateWaitingCapacity(const string &entertainmentType, int n
                     }
 
                     // Write the updated values to the temporary file
-                    tempFile << entertainment << "," << capacityValue << "," << waitingTimeValue << endl;
+                    tempFile << entertainment << ", " << capacityValue << ", " << waitingTimeValue << endl;
                }
           }
 
@@ -162,16 +183,25 @@ void Entertainment::updateWaitingCapacity(const string &entertainmentType, int n
      }
 }
 
-void BumperCars::bookEntertainment(int choice)
+void BumperCars::bookEntertainment(int choice, Authentication &auth)
 {
-     cout << "Booking Bumper Cars..." << endl;
+     int queueSize;
+     cout
+         << "How many people will join the ride?";
+     cin >> queueSize;
+     cout << endl;
 
+     cout
+         << "Booking Bumper Cars..." << endl;
+     string idToken = generateUniqueToken();
      // Save booking information to a CSV file
+     updateWaitingCapacity("Bumper Cars", capacity - queueSize, waitingTime + 1);
+
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Bumper Cars, " << capacity << endl; // Write booking data to the file
-          bookingFile.close();                                                        // Close the booking file
+          bookingFile << auth.getUsername() << ", Bumper Cars, " << capacity << ", " << idToken << endl; // Write booking data to the file
+          bookingFile.close();                                                                           // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else
@@ -180,19 +210,24 @@ void BumperCars::bookEntertainment(int choice)
      }
 
      // Update waiting_capacity file
-     updateWaitingCapacity("Bumper Cars", capacity - 1, waitingTime + 1);
 }
 
-void Carousel::bookEntertainment(int choice)
+void Carousel::bookEntertainment(int choice, Authentication &auth)
 {
-     cout << "Booking Carousel..." << endl;
-
+     int queueSize;
+     cout
+         << "How many people will join the ride?";
+     cin >> queueSize;
+     cout << endl
+          << "Booking Carousel..." << endl;
+     string idToken = generateUniqueToken();
      // Save booking information to a CSV file
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
+     updateWaitingCapacity("Carousel", capacity - queueSize, waitingTime + 1);
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Carousel, " << capacity << endl; // Write booking data to the file
-          bookingFile.close();                                                     // Close the booking file
+          bookingFile << auth.getUsername() << ", Carousel, " << capacity << ", " << idToken << endl; // Write booking data to the file
+          bookingFile.close();                                                                        // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else
@@ -201,19 +236,24 @@ void Carousel::bookEntertainment(int choice)
      }
 
      // Update waiting_capacity file
-     updateWaitingCapacity("Carousel", capacity - 1, waitingTime + 1);
 }
 
-void RollerCoaster::bookEntertainment(int choice)
+void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
 {
-     cout << "Booking Roller Coaster..." << endl;
-
+     int queueSize;
+     cout
+         << "How many people will join the ride?";
+     cin >> queueSize;
+     cout << endl
+          << "Booking Roller Coaster..." << endl;
+     string idToken = generateUniqueToken();
      // Save booking information to a CSV file
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
+     updateWaitingCapacity("Roller Coaster", capacity - queueSize, waitingTime + 1);
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Roller Coaster, " << capacity << endl; // Write booking data to the file
-          bookingFile.close();                                                           // Close the booking file
+          bookingFile << auth.getUsername() << ", Roller Coaster, " << capacity << ", " << idToken << endl; // Write booking data to the file
+          bookingFile.close();                                                                              // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else
@@ -222,5 +262,4 @@ void RollerCoaster::bookEntertainment(int choice)
      }
 
      // Update waiting_capacity file
-     updateWaitingCapacity("Roller Coaster", capacity - 1, waitingTime + 1);
 }

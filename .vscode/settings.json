@@ -2,6 +2,8 @@
     "files.associations": {
         "*.rmd": "markdown",
         "iosfwd": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "ostream": "cpp",
+        "xstring": "cpp"
     }
 }

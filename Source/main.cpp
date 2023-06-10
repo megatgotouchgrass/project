@@ -37,7 +37,7 @@ int main()
             switch (selection)
             {
             case 1:
-                entertainment.mainMenu();
+                entertainment.mainMenu(auth);
                 break;
             case 2:
                 restaurant.mainMenu();
