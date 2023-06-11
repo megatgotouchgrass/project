@@ -229,7 +229,7 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
 
      int queueSize = 0;
      cout
-         << "How many people will join the ride?";
+         << "How many people will join the ride?: ";
      cin >> queueSize;
      cout << endl;
 
@@ -259,7 +259,7 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
 {
      int queueSize;
      cout
-         << "How many people will join the ride?";
+         << "How many people will join the ride?: ";
      cin >> queueSize;
      cout << endl
           << "Booking Carousel..." << endl;
@@ -287,7 +287,7 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
 {
      int queueSize;
      cout
-         << "How many people will join the ride?";
+         << "How many people will join the ride?: ";
      cin >> queueSize;
      cout << endl
           << "Booking Roller Coaster..." << endl;
