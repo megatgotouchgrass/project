@@ -4,6 +4,7 @@
 #include "authentication.h"
 #include <chrono>
 #include <fstream>
+#include <string>
 
 class Entertainment : public Init
 {
@@ -14,6 +15,7 @@ protected:
 public:
     Entertainment(){};
 
+    int getCapacityFromCSV(const string &filename, const string &rideName);
     string generateUniqueToken();
     void mainMenu(Authentication &auth);
     virtual void bookEntertainment(int choice, Authentication &auth); // polymorphism (overriden method)
@@ -25,7 +27,7 @@ public:
     {
         capacity -= bookedSeats;
     }
-    void updateWaitingCapacity(const string &entertainmentType, int newCapacity, int newWaitingTime);
+    void updateCapacity(const string &rowToUpdate, int newCapacity);
 };
 
 class BumperCars : public Entertainment

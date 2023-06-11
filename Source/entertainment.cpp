@@ -18,13 +18,6 @@ string Entertainment::generateUniqueToken()
      oss << setfill('0') << setw(6) << randomID;
      return oss.str();
 }
-
-void Entertainment::displayDetails()
-{
-     cout << "Capacity: " << capacity << endl;
-     cout << "Waiting Time: " << waitingTime << endl;
-}
-
 void Entertainment::bookEntertainment(int choice, Authentication &auth)
 {
 
@@ -90,102 +83,151 @@ void Entertainment::mainMenu(Authentication &auth)
      bookEntertainment(choice, auth);
 }
 
-BumperCars::BumperCars()
+int Entertainment::getCapacityFromCSV(const string &filename, const string &rideName)
 {
-     // Store capacity and waiting time in a CSV file
-     ofstream file("entertainment.csv", ios::app); // Open file in append mode
+     ifstream file(filename); // Open the file for reading
      if (file.is_open())
      {
-          file << "Bumper Cars," << getCapacity() << " ," << getTime() << endl; // Write data to the file
+          string line;
+          while (getline(file, line))
+          {
+               istringstream iss(line);
+               string name;
+               string capacityStr; // Store the capacity as a string
+
+               if (getline(iss, name, ',') && getline(iss, capacityStr, ','))
+               {
+                    // Trim leading/trailing whitespaces from the ride name
+                    name.erase(0, name.find_first_not_of(" \t"));
+                    name.erase(name.find_last_not_of(" \t") + 1);
+
+                    // Check if the name matches
+                    if (name == rideName)
+                    {
+                         int capacity = stoi(capacityStr); // Convert the capacity string to an integer
+                         // Successfully found the capacity
+                         file.close();
+                         return capacity;
+                    }
+               }
+          }
           file.close();
-          cout << "Capacity and waiting time for Bumper Cars stored successfully." << endl;
+     }
+     return -1; // Return -1 if ride name is not found or error occurs
+}
+
+BumperCars::BumperCars()
+{
+     // Getting data from a file
+     capacity = getCapacityFromCSV("entertainment.csv", "Bumper Cars");
+     if (capacity != -1)
+     {
+          cout << "Capacity: " << capacity << endl;
      }
      else
      {
-          cout << "Error: Unable to open the file." << endl;
+          cout << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
      }
 }
 
 Carousel::Carousel()
 {
-     // Store capacity and waiting time in a CSV file
-     ofstream file("entertainment.csv", ios::app); // Open file in append mode
-     if (file.is_open())
+     // Getting data from a file
+
+     capacity = getCapacityFromCSV("entertainment.csv", "Carousel");
+     if (capacity != -1)
      {
-          file << "Carousel," << getCapacity() << ", " << getTime() << endl; // Write data to the file
-          file.close();
-          cout << "Capacity and waiting time for Carousel stored successfully." << endl;
+          cout << "Capacity: " << capacity << endl;
      }
      else
      {
-          cout << "Error: Unable to open the file." << endl;
+          cout << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
      }
 }
 RollerCoaster::RollerCoaster()
 {
-     // Store capacity and waiting time in a CSV file
-     ofstream file("entertainment.csv", ios::app); // Open file in append mode
-     if (file.is_open())
+     // Getting data from a file
+     capacity = getCapacityFromCSV("entertainment.csv", "Roller Coaster");
+     if (capacity != -1)
      {
-          file << "Roller Coaster," << getCapacity() << ", " << getTime() << endl; // Write data to the file
-          file.close();
-          cout << "Capacity and waiting time for Roller Coaster stored successfully." << endl;
+          cout << "Capacity: " << capacity << endl;
      }
      else
      {
-          cout << "Error: Unable to open the file." << endl;
+          cout << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
      }
 }
-void Entertainment::updateWaitingCapacity(const string &entertainmentType, int newCapacity, int newWaitingTime)
+
+void Entertainment::updateCapacity(const string &rowToUpdate, int newCapacity)
 {
-     ifstream wcFile("entertainment.csv"); // Open waiting_capacity file for reading
-     if (wcFile.is_open())
-     {
-          ofstream tempFile("temp.csv"); // Create a temporary file
+     ifstream file("entertainment.csv"); // Open the CSV file for reading
 
-          string line;
-          while (getline(wcFile, line))
+     if (!file)
+     {
+          cout << "Error opening file." << endl;
+          return;
+     }
+
+     vector<string> rows;
+     string line;
+
+     // Read each line from the file and store it in a vector
+     while (getline(file, line))
+     {
+          rows.push_back(line);
+     }
+
+     file.close(); // Close the file
+
+     bool found = false;
+     for (string &row : rows)
+     {
+          stringstream ss(row);
+          string item;
+
+          // Split the row into two parts: name and capacity
+          getline(ss, item, ',');
+          string name = item;
+          getline(ss, item, ',');
+          int capacity = stoi(item);
+
+          // Check if the row name matches the user input
+          if (name == rowToUpdate)
           {
-               stringstream ss(line);
-               string entertainment;
-               int capacityValue;
-               int waitingTimeValue;
-
-               if (getline(ss, entertainment, ',') && getline(ss, line, ',') && getline(ss, line))
-               {
-                    capacityValue = stoi(line);
-                    waitingTimeValue = stoi(line);
-
-                    if (entertainment == entertainmentType)
-                    {
-                         // Update capacity and waiting time
-                         capacityValue = newCapacity;
-                         waitingTimeValue = newWaitingTime;
-                    }
-
-                    // Write the updated values to the temporary file
-                    tempFile << entertainment << ", " << capacityValue << ", " << waitingTimeValue << endl;
-               }
+               row = rowToUpdate + ", " + to_string(newCapacity); // Update the row
+               found = true;
+               break;
           }
-
-          wcFile.close();   // Close the waiting_capacity file
-          tempFile.close(); // Close the temporary file
-
-          // Replace the waiting_capacity file with the temporary file
-          remove("entertainment.csv");
-          rename("temp.csv", "entertainment.csv");
-
-          cout << "Waiting capacity updated successfully!" << endl;
      }
-     else
+
+     if (!found)
      {
-          cout << "Error: Unable to open the waiting_capacity file." << endl;
+          cout << "Row not found." << endl;
+          return;
      }
+
+     ofstream outfile("entertainment.csv"); // Open the CSV file for writing
+
+     if (!outfile)
+     {
+          cout << "Error opening file." << endl;
+          return;
+     }
+
+     // Write the updated rows to the file
+     for (const string &row : rows)
+     {
+          outfile << row << endl;
+     }
+
+     outfile.close(); // Close the file
+     cout << "File updated successfully." << endl;
 }
 
 void BumperCars::bookEntertainment(int choice, Authentication &auth)
 {
-     int queueSize;
+
+     int queueSize = 0;
      cout
          << "How many people will join the ride?";
      cin >> queueSize;
@@ -194,14 +236,15 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
      cout
          << "Booking Bumper Cars..." << endl;
      string idToken = generateUniqueToken();
+
      // Save booking information to a CSV file
-     updateWaitingCapacity("Bumper Cars", capacity - queueSize, waitingTime + 1);
+     updateCapacity("Bumper Cars", capacity - queueSize);
 
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Bumper Cars, " << capacity << ", " << idToken << endl; // Write booking data to the file
-          bookingFile.close();                                                                           // Close the booking file
+          bookingFile << auth.getUsername() << ", Bumper Cars, " << queueSize << ", " << idToken << endl; // Write booking data to the file
+          bookingFile.close();                                                                            // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else
@@ -221,13 +264,15 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
      cout << endl
           << "Booking Carousel..." << endl;
      string idToken = generateUniqueToken();
+
      // Save booking information to a CSV file
+     updateCapacity("Carousel", capacity - queueSize);
+
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
-     updateWaitingCapacity("Carousel", capacity - queueSize, waitingTime + 1);
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Carousel, " << capacity << ", " << idToken << endl; // Write booking data to the file
-          bookingFile.close();                                                                        // Close the booking file
+          bookingFile << auth.getUsername() << ", Carousel, " << queueSize << ", " << idToken << endl; // Write booking data to the file
+          bookingFile.close();                                                                         // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else
@@ -247,13 +292,16 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
      cout << endl
           << "Booking Roller Coaster..." << endl;
      string idToken = generateUniqueToken();
+
      // Save booking information to a CSV file
+     updateCapacity("Roller Coaster", capacity - queueSize);
+
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
-     updateWaitingCapacity("Roller Coaster", capacity - queueSize, waitingTime + 1);
+
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Roller Coaster, " << capacity << ", " << idToken << endl; // Write booking data to the file
-          bookingFile.close();                                                                              // Close the booking file
+          bookingFile << auth.getUsername() << ", Roller Coaster, " << queueSize << ", " << idToken << endl; // Write booking data to the file
+          bookingFile.close();                                                                               // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else
