@@ -40,7 +40,7 @@ int main()
                 entertainment.mainMenu(auth);
                 break;
             case 2:
-                restaurant.mainMenu();
+                restaurant.mainMenu(auth);
                 break;
             case 3:
                 merchandise.mainMenu();
