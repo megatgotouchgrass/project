@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <ctime>
 #include <algorithm>
+#include "token.h"
 
 class Merchandise : public Init
 {
@@ -20,8 +21,8 @@ protected:
     float totalMerchPrice;
 
 public:
+    Token token;
     void mainMenu();
-    string generateUniqueToken();
     const vector<string> &getMerchItems() const;
     const vector<float> &getMerchPrices() const;
     void receipt(vector<string> selectedFoodItems);

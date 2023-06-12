@@ -5,6 +5,7 @@
 #include <chrono>
 #include <fstream>
 #include <string>
+#include <token.h>
 
 class Entertainment : public Init
 {
@@ -14,12 +15,11 @@ protected:
 
 public:
     Entertainment(){};
+    Token token;
 
     int getCapacityFromCSV(const string &filename, const string &rideName);
-    string generateUniqueToken();
     void mainMenu(Authentication &auth);
     virtual void bookEntertainment(int choice, Authentication &auth); // polymorphism (overriden method)
-    void displayDetails();
 
     int getCapacity() { return capacity; };
     int getTime() { return waitingTime; };

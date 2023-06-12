@@ -8,16 +8,6 @@
 
 using namespace std;
 
-string Entertainment::generateUniqueToken()
-{
-     random_device rd;
-     mt19937 gen(rd());
-     uniform_int_distribution<int> distribution(100000, 999999);
-     int randomID = distribution(gen);
-     ostringstream oss;
-     oss << setfill('0') << setw(6) << randomID;
-     return oss.str();
-}
 void Entertainment::bookEntertainment(int choice, Authentication &auth)
 {
 
@@ -235,7 +225,7 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
 
      cout
          << "Booking Bumper Cars..." << endl;
-     string idToken = generateUniqueToken();
+     string idToken = token.generateUniqueToken();
 
      // Save booking information to a CSV file
      updateCapacity("Bumper Cars", capacity - queueSize);
@@ -263,7 +253,7 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
      cin >> queueSize;
      cout << endl
           << "Booking Carousel..." << endl;
-     string idToken = generateUniqueToken();
+     string idToken = token.generateUniqueToken();
 
      // Save booking information to a CSV file
      updateCapacity("Carousel", capacity - queueSize);
@@ -291,7 +281,7 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
      cin >> queueSize;
      cout << endl
           << "Booking Roller Coaster..." << endl;
-     string idToken = generateUniqueToken();
+     string idToken = token.generateUniqueToken();
 
      // Save booking information to a CSV file
      updateCapacity("Roller Coaster", capacity - queueSize);

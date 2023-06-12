@@ -5,7 +5,7 @@ using namespace std;
 void Restaurant::receipt(vector<string> selectedFoodItems, vector<string> selectedBeverageItems)
 {
     // Generate a unique token
-    string idToken = generateUniqueToken();
+    string idToken = token.generateUniqueToken();
 
     // Calculate the total price
     float totalPrice = calculateTotalPrice(selectedFoodItems, selectedBeverageItems);
