@@ -29,7 +29,7 @@ public:
         capacity -= bookedSeats;
     }
     void updateCapacity(const string &rowToUpdate, int newCapacity);
-    ~Entertainment();
+    ~Entertainment(){};
 };
 
 class BumperCars : public Entertainment
