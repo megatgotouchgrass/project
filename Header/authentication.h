@@ -12,14 +12,14 @@ private:
     string password;
 
 public:
-    Authentication();
+    Authentication(){};
     bool userSignUp();
     bool userLogIn();
     string passwordInput();
     bool updateDatabase(); // to add up new user
     bool checkDatabase();
     string getUsername(); // to determine whether the user is alreaedy in the system
-    ~Authentication();
+    ~Authentication(){};
 };
 
 #endif
