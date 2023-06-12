@@ -22,8 +22,7 @@ protected:
     float totalBeveragePrice;
 
 public:
-    void mainMenu(Authentication &auth);
-    virtual void bookRestaurant();
+    void mainMenu();
     const vector<string> &getFoodItems() const;
     const vector<string> &getBeverageItems() const;
     const vector<float> &getFoodPrices() const;

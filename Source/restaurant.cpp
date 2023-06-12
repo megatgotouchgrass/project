@@ -17,7 +17,7 @@ void Restaurant::receipt(vector<string> selectedFoodItems, vector<string> select
     cout << "----------------------------------------" << endl;
 
     // Store the receipt information in a file
-    ofstream file("receipt.csv", ios::app);
+    ofstream file("receiptRestaurant.csv", ios::app);
     if (file.is_open())
     {
         file << "ID Token: " << idToken << endl;
@@ -46,7 +46,6 @@ float Restaurant::calculateTotalPrice(vector<string> selectedFoodItems, vector<s
         }
     }
 
-    float totalBeveragePrice = 0.0;
     for (int i = 0; i < selectedBeverageItems.size(); ++i)
     {
         int beverageIndex = find(beverageItems.begin(), beverageItems.end(), selectedBeverageItems[i]) - beverageItems.begin();
@@ -70,7 +69,7 @@ string Restaurant::generateUniqueToken()
     return oss.str();
 }
 
-void Restaurant::mainMenu(Authentication &auth)
+void Restaurant::mainMenu()
 {
     greetings();
     int selection;
@@ -116,11 +115,6 @@ void Restaurant::mainMenu(Authentication &auth)
     default:
         cout << "Invalid selection!" << endl;
     }
-}
-
-void Restaurant::bookRestaurant()
-{
-    cout << "Booking restaurant..." << endl;
 }
 
 BroncoBistro::BroncoBistro()
