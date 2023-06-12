@@ -8,7 +8,7 @@ public:
     void greetings();
     bool checkIfUserExist();
     int mainMenu();
-    ~Init();
+    ~Init(){};
 };
 
 #endif
