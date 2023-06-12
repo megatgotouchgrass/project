@@ -23,6 +23,7 @@ protected:
     float totalBeveragePrice;
 
 public:
+    Restaurant(){};
     Token token;
     void mainMenu();
     const vector<string> &getFoodItems() const;
@@ -32,6 +33,7 @@ public:
     string generateUniqueToken();
     void receipt(vector<string> selectedFoodItems, vector<string> selectedBeverageItems);
     float calculateTotalPrice(vector<string> selectedFoodItems, vector<string> selectedBeverageItems);
+    ~Restaurant(){};
 };
 
 class BroncoBistro : public Restaurant

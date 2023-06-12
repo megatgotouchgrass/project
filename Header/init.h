@@ -4,9 +4,11 @@
 class Init
 {
 public:
+    Init(){};
     void greetings();
     bool checkIfUserExist();
     int mainMenu();
+    ~Init();
 };
 
 #endif

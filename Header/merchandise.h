@@ -21,12 +21,14 @@ protected:
     float totalMerchPrice;
 
 public:
+    Merchandise(){};
     Token token;
     void mainMenu();
     const vector<string> &getMerchItems() const;
     const vector<float> &getMerchPrices() const;
     void receipt(vector<string> selectedFoodItems);
     float calculateTotalPrice(vector<string> selectedMerchItems);
+    ~Merchandise(){};
 };
 
 class GalacticBootcamp : public Merchandise

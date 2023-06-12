@@ -11,7 +11,9 @@ using namespace std;
 class Token
 {
 public:
+    Token(){};
     string generateUniqueToken();
+    ~Token(){};
 };
 
 #endif

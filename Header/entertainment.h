@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include <token.h>
+#include "timer.h"
 
 class Entertainment : public Init
 {
@@ -16,7 +17,7 @@ protected:
 public:
     Entertainment(){};
     Token token;
-
+    TimeProvider time;
     int getCapacityFromCSV(const string &filename, const string &rideName);
     void mainMenu(Authentication &auth);
     virtual void bookEntertainment(int choice, Authentication &auth); // polymorphism (overriden method)
@@ -28,6 +29,7 @@ public:
         capacity -= bookedSeats;
     }
     void updateCapacity(const string &rowToUpdate, int newCapacity);
+    ~Entertainment();
 };
 
 class BumperCars : public Entertainment
