@@ -10,7 +10,7 @@ void Merchandise::mainMenu()
      cout << "What shop would you like to choose?" << endl
           << endl;
 
-     cout << "(1) BootCamp" << endl;
+     cout << "(1) Galactic BootCamp" << endl;
      cout << "               _    _" << endl;
      cout << "              (_\\__/(,_" << endl;
      cout << "              | \\ `_////-._" << endl;
@@ -22,17 +22,21 @@ void Merchandise::mainMenu()
      cout << " '-'-'-\"\"\"\"\"\"\"`" << endl
           << endl;
 
-     cout << "(2) Emporium" << endl
-          << endl;
-     cout << "      .~~~~`\\~~\\" << endl;
-     cout << "     ;       ~~ \\" << endl;
-     cout << "     |           ;" << endl;
-     cout << " ,--------,______|---." << endl;
-     cout << "/          \\-----`    \\ " << endl;
-     cout << "`.__________`-_______-'" << endl
-          << endl;
+     cout << "(2) Emporium Park" << endl;
+     cout << "                             ___......__             _" << endl;
+     cout << "                        _.-'           ~-_       _.=a~~-_" << endl;
+     cout << "--=====-.-.-_----------~   .--.       _   -.__.-~ ( ___===>" << endl;
+     cout << "              '''--...__  (    \\ \\\\\\ { )       _.-~" << endl;
+     cout << "                        =_ ~_  \\\\-~~~//~~~~-=-~" << endl;
+     cout << "                         |-=-~_ \\\\   \\\\" << endl;
+     cout << "                         |_/   =. )   ~}" << endl;
+     cout << "                         |}      ||" << endl;
+     cout << "                        //       ||" << endl;
+     cout << "                      _//        {{" << endl;
+     cout << "                   '='~'          \\\\_    =" << endl;
+     cout << "                                   ~~'" << endl;
 
-     cout << "(3) Wonder" << endl;
+     cout << "(3) Galaxy Of Wonders" << endl;
      cout << "         _ _" << endl;
      cout << "      ___   ___" << endl;
      cout << "     '~~(`v')~~`" << endl;
@@ -186,7 +190,7 @@ void GalacticBootcamp::bookRestaurant()
 
      // Perform the booking based on the selected options
      greetings();
-
+     cout << endl;
      cout << "Merchandise selected:" << endl;
      for (const auto &merch : selectedmerchItems)
      {
