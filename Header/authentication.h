@@ -2,6 +2,7 @@
 #define AUTHENTICATION_H
 #include "init.h"
 #include <string>
+#include <iomanip>
 
 using namespace std;
 

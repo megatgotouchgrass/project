@@ -57,15 +57,15 @@ bool Authentication::userSignUp()
 
     do
     {
-        cout << "Do you wish to create a new account? (y/n) : ";
+        cout << setw(80) << "Do you wish to create a new account? (y/n) : ";
         cin >> continueOperation;
         if (continueOperation == 'Y' || continueOperation == 'y')
         {
             greetings();
-            cout << "Enter your username: ";
+            cout << setw(62) << "Enter your username: ";
             cin >> username;
 
-            cout << "Enter your password: ";
+            cout << setw(62) << "Enter your password: ";
             password = passwordInput();
 
             fflush(stdin);
@@ -87,7 +87,7 @@ bool Authentication::userLogIn()
     char continueOperation;
     bool accessed;
 
-    cout << "Do you wish to login to the existing account? (y/n) : ";
+    cout << setw(86) << "Do you wish to login to the existing account? (y/n) : ";
     cin >> continueOperation;
     do
     {
@@ -95,10 +95,10 @@ bool Authentication::userLogIn()
         {
 
             greetings();
-            cout << "Enter your username: ";
+            cout << setw(62) << "Enter your username: ";
             cin >> username;
 
-            cout << "Enter your password: ";
+            cout << setw(62) << "Enter your password: ";
             password = passwordInput();
 
             accessed = checkDatabase();

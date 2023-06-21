@@ -1,5 +1,6 @@
 #ifndef INIT_H
 #define INIT_H
+#include <iomanip>
 
 class Init
 {

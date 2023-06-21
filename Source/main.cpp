@@ -49,7 +49,7 @@ int main()
         };
 
         cout << endl
-             << "Do you wish to go back to home menu? (y/n): ";
+             << setw(80) << "Do you wish to go back to home menu? (y/n): ";
         cin >> systemRun;
 
     } while (systemRun == 'Y' || systemRun == 'y');

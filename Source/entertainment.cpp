@@ -37,35 +37,35 @@ void Entertainment::mainMenu(Authentication &auth)
      int choice;
 
      cout << endl
-          << "What would you like to choose?" << endl
+          << setw(75) << "What would you like to choose?" << endl
           << endl;
 
      do
      {
-          cout << "(1) Bumper Cars" << endl;
-          cout << "  _______" << endl;
-          cout << " /|_||_\\`.__" << endl;
-          cout << "(   _    _ _\\" << endl;
-          cout << "=`-(_)--(_)-'" << endl
+          cout << setw(67) << "(1) Bumper Cars" << endl;
+          cout << setw(62) << "  _______" << endl;
+          cout << setw(66) << " /|_||_\\`.__" << endl;
+          cout << setw(67) << "(   _    _ _\\" << endl;
+          cout << setw(67) << "=`-(_)--(_)-'" << endl
                << endl;
 
-          cout << "(2) Carousel" << endl;
-          cout << "        ,--," << endl;
-          cout << "  _ ___/ /`|" << endl;
-          cout << " ;( )__, )" << endl;
-          cout << "; //   '--;" << endl;
-          cout << "  '^    '^" << endl
+          cout << setw(64) << "(2) Carousel" << endl;
+          cout << setw(54 + 12) << "        ,--," << endl;
+          cout << setw(54 + 12) << "  _ ___/ /`|" << endl;
+          cout << setw(54 + 10) << " ;( )__, )" << endl;
+          cout << setw(54 + 11) << "; //   '--;" << endl;
+          cout << setw(54 + 10) << "  '^    '^" << endl
                << endl;
 
-          cout << "(3) Roller Coaster" << endl;
-          cout << " _                     .===." << endl;
-          cout << "|H|        .--.      .:'   `:." << endl;
-          cout << "|H|`.     /||||'     ||     ||" << endl;
-          cout << "|//||:. .'||||||`.   `:.   .:'" << endl;
-          cout << "|:`:.--'||||||||||`--..`=:='... " << endl
+          cout << setw(70) << "(3) Roller Coaster" << endl;
+          cout << setw(46 + 28) << " _                     .===." << endl;
+          cout << setw(46 + 30) << "|H|        .--.      .:'   `:." << endl;
+          cout << setw(46 + 30) << "|H|`.     /||||'     ||     ||" << endl;
+          cout << setw(46 + 30) << "|//||:. .'||||||`.   `:.   .:'" << endl;
+          cout << setw(46 + 32) << "|:`:.--'||||||||||`--..`=:='... " << endl
                << endl;
 
-          cout << "Selection: ";
+          cout << setw(65) << "Selection: ";
           cin >> choice;
      } while (!(choice > 0 && choice < 4));
 
@@ -111,11 +111,13 @@ BumperCars::BumperCars()
      capacity = getCapacityFromCSV("entertainment.csv", "Bumper Cars");
      if (capacity != -1)
      {
-          cout << "Capacity: " << capacity << endl;
+          cout << endl;
+          cout << setw(64) << "Capacity: " << capacity << endl
+               << endl;
      }
      else
      {
-          cout << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
+          cout << setw(92) << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
      }
 }
 
@@ -210,7 +212,6 @@ void Entertainment::updateCapacity(const string &rowToUpdate, int newCapacity)
      }
 
      outfile.close(); // Close the file
-     cout << "File updated successfully." << endl;
 }
 
 void BumperCars::bookEntertainment(int choice, Authentication &auth)
@@ -218,12 +219,12 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
 
      int queueSize = 0;
      cout
-         << "How many people will join the ride?: ";
+         << setw(40 + 37) << "How many people will join the ride?: ";
      cin >> queueSize;
      cout << endl;
 
      cout
-         << "Booking Bumper Cars..." << endl;
+         << setw(50 + 20) << "Booking Bumper Cars..." << endl;
      string idToken = token.generateUniqueToken();
 
      // Save booking information to a CSV file
@@ -234,24 +235,23 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
      {
           bookingFile << auth.getUsername() << ", Bumper Cars, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
           bookingFile.close();                                                                                                              // Close the booking file
-          cout << "Booking successful!" << endl;
+          cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
+          cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
      }
      else
      {
-          cout << "Error: Unable to open the booking file." << endl;
+          cout << setw(40 + 39) << "Error: Unable to open the booking file." << endl;
      }
-
-     // Update waiting_capacity file
 }
 
 void Carousel::bookEntertainment(int choice, Authentication &auth)
 {
      int queueSize;
      cout
-         << "How many people will join the ride?: ";
+         << setw(40 + 37) << "How many people will join the ride?: ";
      cin >> queueSize;
      cout << endl
-          << "Booking Carousel..." << endl;
+          << setw(50 + 20) << "Booking Carousel..." << endl;
      string idToken = token.generateUniqueToken();
 
      // Save booking information to a CSV file
@@ -262,11 +262,12 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
      {
           bookingFile << auth.getUsername() << ", Carousel, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
           bookingFile.close();                                                                                                           // Close the booking file
-          cout << "Booking successful!" << endl;
+          cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
+          cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
      }
      else
      {
-          cout << "Error: Unable to open the booking file." << endl;
+          cout << setw(40 + 39) << "Error: Unable to open the booking file." << endl;
      }
 
      // Update waiting_capacity file
@@ -276,10 +277,10 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
 {
      int queueSize;
      cout
-         << "How many people will join the ride?: ";
+         << setw(40 + 37) << "How many people will join the ride?: ";
      cin >> queueSize;
      cout << endl
-          << "Booking Roller Coaster..." << endl;
+          << setw(50 + 20) << "Booking Roller Coaster..." << endl;
      string idToken = token.generateUniqueToken();
 
      // Save booking information to a CSV file
@@ -291,11 +292,12 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
      {
           bookingFile << auth.getUsername() << ", Roller Coaster, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
           bookingFile.close();                                                                                                                 // Close the booking file
-          cout << "Booking successful!" << endl;
+          cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
+          cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
      }
      else
      {
-          cout << "Error: Unable to open the booking file." << endl;
+          cout << setw(40 + 39) << "Error: Unable to open the booking file." << endl;
      }
 
      // Update waiting_capacity file
