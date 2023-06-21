@@ -11,10 +11,11 @@ void Restaurant::receipt(vector<string> selectedFoodItems, vector<string> select
     float totalPrice = calculateTotalPrice(selectedFoodItems, selectedBeverageItems);
 
     // Display the receipt
-    cout << "---------------- Receipt ----------------" << endl;
-    cout << "ID Token: " << idToken << endl;
-    cout << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
-    cout << "----------------------------------------" << endl;
+    cout << endl;
+    cout << setw(36 + 42) << "---------------- Receipt ----------------" << endl;
+    cout << setw(36 + 11) << "ID Token: " << idToken << endl;
+    cout << setw(36 + 15) << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
+    cout << setw(36 + 41) << "----------------------------------------" << endl;
 
     // Store the receipt information in a file
     ofstream file("receiptRestaurant.csv", ios::app);
@@ -74,21 +75,20 @@ void Restaurant::mainMenu()
     greetings();
     int selection;
 
-    cout << "Which restaurant would you like to go?" << endl
-         << endl;
-    cout << "(1) Bronco Bistro" << endl;
-    cout << "(2) Eastern Spice" << endl;
-    cout << "(3) La Fiesta Mexicana" << endl;
+    cout << setw(75) << "Which restaurant would you like to go?" << endl;
+    cout << setw(45 + 18) << "(1) Bronco Bistro" << endl;
+    cout << setw(45 + 18) << "(2) Eastern Spice" << endl;
+    cout << setw(45 + 23) << "(3) La Fiesta Mexicana" << endl;
 
-    cout << "  __                   ___                       ( )" << endl;
-    cout << " |\"\"|  ___    _   __  |\"\"\"|  \\__                   \\`" << endl;
-    cout << " |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|        _._ _" << endl;
-    cout << " |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|       (__((_(" << endl;
-    cout << " |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|      \\\\'-:--:-." << endl;
-    cout << " \"\'\'\'\"\'\'\"\'\"\"\'\"\"\"\'\'\"\'\'\'\'\"\"\"\'\"\"\'\"\"\'~~~~~~'-----'~~~~  " << endl;
+    cout << setw(31 + 53) << "  __                   ___                       ( )" << endl;
+    cout << setw(31 + 54) << " |\"\"|  ___    _   __  |\"\"\"|  \\__                   \\`" << endl;
+    cout << setw(31 + 46) << " |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|        _._ _" << endl;
+    cout << setw(31 + 47) << " |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|       (__((_(" << endl;
+    cout << setw(31 + 49) << " |\"\"| |\"\"\"|  |\"| |\"\"| |\"\"\"| |\"\"|      \\\\'-:--:-." << endl;
+    cout << setw(31 + 53) << " \"\'\'\'\"\'\'\"\'\"\"\'\"\"\"\'\'\"\'\'\'\'\"\"\"\'\"\"\'\"\"\'~~~~~~'-----'~~~~  " << endl;
 
     cout << endl
-         << "Insert selection: ";
+         << setw(64) << "Insert selection: ";
     cin >>
         selection;
 
@@ -147,17 +147,18 @@ LaFiestaMexicana::LaFiestaMexicana()
 void BroncoBistro::bookRestaurant()
 {
     greetings();
-    cout << "Booking Bronco Bistro..." << endl;
+    cout << setw(40 + 25) << "Booking Bronco Bistro..." << endl;
 
     int capacity;
-    cout << "Booking for how many people?: ";
+    cout << setw(40 + 31) << "Booking for how many people?: ";
     cin >> capacity;
 
     cout << endl
+         << setw(40 + 22)
          << "Available Food Items:" << endl;
     for (int i = 0; i < foodItems.size(); i++)
     {
-        cout << "(" << i + 1 << ") " << foodItems[i] << " - $" << foodPrices[i] << endl;
+        cout << setw(42) << "(" << i + 1 << ") " << foodItems[i] << " - $" << foodPrices[i] << endl;
     }
 
     cout << endl;
@@ -165,7 +166,7 @@ void BroncoBistro::bookRestaurant()
     int foodChoice;
     do
     {
-        cout << "Select a food item (enter 0 to finish): ";
+        cout << setw(40 + 41) << "Select a food item (enter 0 to finish): ";
         cin >> foodChoice;
         if (foodChoice > 0 && foodChoice <= foodItems.size())
         {
@@ -173,10 +174,10 @@ void BroncoBistro::bookRestaurant()
         }
     } while (foodChoice != 0);
     cout << endl;
-    cout << "Available Beverage Items:" << endl;
+    cout << setw(40 + 26) << "Available Beverage Items:" << endl;
     for (int i = 0; i < beverageItems.size(); i++)
     {
-        cout << "(" << i + 1 << ") " << beverageItems[i] << " - $" << beveragePrices[i] << endl;
+        cout << setw(42) << "(" << i + 1 << ") " << beverageItems[i] << " - $" << beveragePrices[i] << endl;
     }
 
     vector<string> selectedBeverageItems;
@@ -184,7 +185,7 @@ void BroncoBistro::bookRestaurant()
     cout << endl;
     do
     {
-        cout << "Select a beverage item (enter 0 to finish): ";
+        cout << setw(40 + 45) << "Select a beverage item (enter 0 to finish): ";
         cin >> beverageChoice;
         if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
         {
@@ -194,19 +195,19 @@ void BroncoBistro::bookRestaurant()
 
     // Perform the booking based on the selected options
     greetings();
-    cout << "Booking confirmed for " << capacity << " people." << endl
+    cout << setw(40 + 23) << "Booking confirmed for " << capacity << " people." << endl
          << endl;
-    cout << "Food items selected:" << endl;
+    cout << setw(40 + 21) << "Food items selected:" << endl;
     for (const auto &food : selectedFoodItems)
     {
-        cout << food << endl;
+        cout << setw(47) << food << endl;
     }
     cout << endl;
 
-    cout << "Beverage items selected:" << endl;
+    cout << setw(40 + 25) << "Beverage items selected:" << endl;
     for (const auto &beverage : selectedBeverageItems)
     {
-        cout << beverage << endl;
+        cout << setw(47) << beverage << endl;
     }
 
     receipt(selectedFoodItems, selectedBeverageItems);
@@ -215,25 +216,26 @@ void BroncoBistro::bookRestaurant()
 void EasternSpice::bookRestaurant()
 {
     greetings();
-    cout << "Booking Eastern Spice..." << endl;
+    cout << setw(40 + 25) << "Booking Eastern Spice..." << endl;
 
     int capacity;
-    cout << "Booking for how many people?: ";
+    cout << setw(40 + 31) << "Booking for how many people?: ";
     cin >> capacity;
 
     cout << endl
+         << setw(40 + 22)
          << "Available Food Items:" << endl;
     for (int i = 0; i < foodItems.size(); i++)
     {
-        cout << "(" << i + 1 << ") " << foodItems[i] << " - $" << foodPrices[i] << endl;
+        cout << setw(42) << "(" << i + 1 << ") " << foodItems[i] << " - $" << foodPrices[i] << endl;
     }
-    cout << endl;
 
+    cout << endl;
     vector<string> selectedFoodItems;
     int foodChoice;
     do
     {
-        cout << "Select a food item (enter 0 to finish): ";
+        cout << setw(40 + 41) << "Select a food item (enter 0 to finish): ";
         cin >> foodChoice;
         if (foodChoice > 0 && foodChoice <= foodItems.size())
         {
@@ -241,10 +243,10 @@ void EasternSpice::bookRestaurant()
         }
     } while (foodChoice != 0);
     cout << endl;
-    cout << "Available Beverage Items:" << endl;
+    cout << setw(40 + 26) << "Available Beverage Items:" << endl;
     for (int i = 0; i < beverageItems.size(); i++)
     {
-        cout << "(" << i + 1 << ") " << beverageItems[i] << " - $" << beveragePrices[i] << endl;
+        cout << setw(42) << "(" << i + 1 << ") " << beverageItems[i] << " - $" << beveragePrices[i] << endl;
     }
 
     vector<string> selectedBeverageItems;
@@ -252,7 +254,7 @@ void EasternSpice::bookRestaurant()
     cout << endl;
     do
     {
-        cout << "Select a beverage item (enter 0 to finish): ";
+        cout << setw(40 + 45) << "Select a beverage item (enter 0 to finish): ";
         cin >> beverageChoice;
         if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
         {
@@ -262,37 +264,38 @@ void EasternSpice::bookRestaurant()
 
     // Perform the booking based on the selected options
     greetings();
-    cout << "Booking confirmed for " << capacity << " people." << endl
+    cout << setw(40 + 23) << "Booking confirmed for " << capacity << " people." << endl
          << endl;
-    cout << "Food items selected:" << endl;
+    cout << setw(40 + 21) << "Food items selected:" << endl;
     for (const auto &food : selectedFoodItems)
     {
-        cout << food << endl;
+        cout << setw(47) << food << endl;
     }
     cout << endl;
 
-    cout << "Beverage items selected:" << endl;
+    cout << setw(40 + 25) << "Beverage items selected:" << endl;
     for (const auto &beverage : selectedBeverageItems)
     {
-        cout << beverage << endl;
+        cout << setw(47) << beverage << endl;
     }
+
     receipt(selectedFoodItems, selectedBeverageItems);
 }
 
 void LaFiestaMexicana::bookRestaurant()
 {
     greetings();
-    cout << "Booking La Fiesta Mexicana..." << endl;
-
+    cout << setw(40 + 25) << "Booking La Fiesta Mexicana..." << endl;
     int capacity;
-    cout << endl
-         << "Booking for how many people?: ";
+    cout << setw(40 + 31) << "Booking for how many people?: ";
     cin >> capacity;
 
-    cout << "Available Food Items:" << endl;
+    cout << endl
+         << setw(40 + 22)
+         << "Available Food Items:" << endl;
     for (int i = 0; i < foodItems.size(); i++)
     {
-        cout << "(" << i + 1 << ") " << foodItems[i] << " - $" << foodPrices[i] << endl;
+        cout << setw(42) << "(" << i + 1 << ") " << foodItems[i] << " - $" << foodPrices[i] << endl;
     }
 
     cout << endl;
@@ -300,18 +303,18 @@ void LaFiestaMexicana::bookRestaurant()
     int foodChoice;
     do
     {
-        cout << "Select a food item (enter 0 to finish): ";
+        cout << setw(40 + 41) << "Select a food item (enter 0 to finish): ";
         cin >> foodChoice;
         if (foodChoice > 0 && foodChoice <= foodItems.size())
         {
             selectedFoodItems.push_back(foodItems[foodChoice - 1]);
         }
     } while (foodChoice != 0);
-
-    cout << "Available Beverage Items:" << endl;
+    cout << endl;
+    cout << setw(40 + 26) << "Available Beverage Items:" << endl;
     for (int i = 0; i < beverageItems.size(); i++)
     {
-        cout << "(" << i + 1 << ") " << beverageItems[i] << " - $" << beveragePrices[i] << endl;
+        cout << setw(42) << "(" << i + 1 << ") " << beverageItems[i] << " - $" << beveragePrices[i] << endl;
     }
 
     vector<string> selectedBeverageItems;
@@ -319,7 +322,7 @@ void LaFiestaMexicana::bookRestaurant()
     cout << endl;
     do
     {
-        cout << "Select a beverage item (enter 0 to finish): ";
+        cout << setw(40 + 45) << "Select a beverage item (enter 0 to finish): ";
         cin >> beverageChoice;
         if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
         {
@@ -329,19 +332,21 @@ void LaFiestaMexicana::bookRestaurant()
 
     // Perform the booking based on the selected options
     greetings();
-    cout << "Booking confirmed for " << capacity << " people." << endl
+    cout << setw(40 + 23) << "Booking confirmed for " << capacity << " people." << endl
          << endl;
-    cout << "Food items selected:" << endl;
+    cout << setw(40 + 21) << "Food items selected:" << endl;
     for (const auto &food : selectedFoodItems)
     {
-        cout << food << endl;
+        cout << setw(47) << food << endl;
     }
     cout << endl;
-    cout << "Beverage items selected:" << endl;
+
+    cout << setw(40 + 25) << "Beverage items selected:" << endl;
     for (const auto &beverage : selectedBeverageItems)
     {
-        cout << beverage << endl;
+        cout << setw(47) << beverage << endl;
     }
+
     receipt(selectedFoodItems, selectedBeverageItems);
 }
 
