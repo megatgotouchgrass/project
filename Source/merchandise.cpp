@@ -7,52 +7,51 @@ void Merchandise::mainMenu()
      int selection;
 
      greetings();
-     cout << "What shop would you like to choose?" << endl
+     cout << setw(76) << "What shop would you like to choose?" << endl
           << endl;
 
-     cout << "(1) Galactic BootCamp" << endl;
-     cout << "               _    _" << endl;
-     cout << "              (_\\__/(,_" << endl;
-     cout << "              | \\ `_////-._" << endl;
-     cout << "  _    _      L_/__ \"=> __/`\\" << endl;
-     cout << " (_\\__/(,_    |=====;__/___./" << endl;
-     cout << " | \\ `_////-._'-'-'-\"\"\"\"\"\"`" << endl;
-     cout << " J_/___\"=> __/`\\" << endl;
-     cout << " |=====;__/___./" << endl;
-     cout << " '-'-'-\"\"\"\"\"\"\"`" << endl
+     cout << setw(45 + 22) << "(1) Galactic BootCamp" << endl;
+     cout << setw(45 + 22) << "               _    _" << endl;
+     cout << setw(45 + 24) << "              (_\\__/(,_" << endl;
+     cout << setw(45 + 28) << "              | \\ `_////-._" << endl;
+     cout << setw(45 + 30) << "  _    _      L_/__ \"=> __/`\\" << endl;
+     cout << setw(45 + 30) << " (_\\__/(,_    |=====;__/___./" << endl;
+     cout << setw(45 + 28) << " | \\ `_////-._'-'-'-\"\"\"\"\"\"`" << endl;
+     cout << setw(45 + 17) << " J_/___\"=> __/`\\" << endl;
+     cout << setw(45 + 17) << " |=====;__/___./" << endl;
+     cout << setw(45 + 16) << " '-'-'-\"\"\"\"\"\"\"`" << endl
           << endl;
 
-     cout << "(2) Emporium Park" << endl;
-     cout << "                             ___......__             _" << endl;
-     cout << "                        _.-'           ~-_       _.=a~~-_" << endl;
-     cout << "--=====-.-.-_----------~   .--.       _   -.__.-~ ( ___===>" << endl;
-     cout << "              '''--...__  (    \\ \\\\\\ { )       _.-~" << endl;
-     cout << "                        =_ ~_  \\\\-~~~//~~~~-=-~" << endl;
-     cout << "                         |-=-~_ \\\\   \\\\" << endl;
-     cout << "                         |_/   =. )   ~}" << endl;
-     cout << "                         |}      ||" << endl;
-     cout << "                        //       ||" << endl;
-     cout << "                      _//        {{" << endl;
-     cout << "                   '='~'          \\\\_    =" << endl;
-     cout << "                                   ~~'" << endl;
+     cout << setw(45 + 18) << "(2) Emporium Park" << endl;
+     cout << setw(24 + 55) << "                             ___......__             _" << endl;
+     cout << setw(24 + 58) << "                        _.-'           ~-_       _.=a~~-_" << endl;
+     cout << setw(24 + 60) << "--=====-.-.-_----------~   .--.       _   -.__.-~ ( ___===>" << endl;
+     cout << setw(24 + 52) << "              '''--...__  (    \\ \\\\\\ { )       _.-~" << endl;
+     cout << setw(24 + 48) << "                        =_ ~_  \\\\-~~~//~~~~-=-~" << endl;
+     cout << setw(24 + 40) << "                         |-=-~_ \\\\   \\\\" << endl;
+     cout << setw(24 + 41) << "                         |_/   =. )   ~}" << endl;
+     cout << setw(24 + 36) << "                         |}      ||" << endl;
+     cout << setw(24 + 36) << "                        //       ||" << endl;
+     cout << setw(24 + 36) << "                      _//        {{" << endl;
+     cout << setw(24 + 43) << "                   '='~'          \\\\_    =" << endl;
+     cout << setw(24 + 39) << "                                   ~~'" << endl;
 
-     cout << "(3) Galaxy Of Wonders" << endl;
-     cout << "         _ _" << endl;
-     cout << "      ___   ___" << endl;
-     cout << "     '~~(`v')~~`" << endl;
-     cout << "         |   |" << endl;
-     cout << "        /   \\" << endl;
-     cout << "      .'`~~~'`." << endl;
-     cout << "     /   /\"\\   \\" << endl;
-     cout << "    .   / | \\   ." << endl;
-     cout << "   /   .  .  .   \\" << endl;
-     cout << "  .   /   |   \\   ." << endl;
-     cout << " /   .    |    .   \\" << endl;
-     cout << ":   /     .     \\   :" << endl;
-     cout << "`~.:.     |     .:.~'" << endl;
-
+     cout << setw(45 + 22) << "(3) Galaxy Of Wonders" << endl;
+     cout << setw(45 + 13) << "         _ _" << endl;
+     cout << setw(45 + 16) << "      ___   ___" << endl;
+     cout << setw(45 + 17) << "     '~~(`v')~~`" << endl;
+     cout << setw(45 + 15) << "         |   |" << endl;
+     cout << setw(45 + 14) << "        /   \\" << endl;
+     cout << setw(45 + 16) << "      .'`~~~'`." << endl;
+     cout << setw(45 + 17) << "     /   /\"\\   \\" << endl;
+     cout << setw(45 + 18) << "    .   / | \\   ." << endl;
+     cout << setw(45 + 19) << "   /   .  .  .   \\" << endl;
+     cout << setw(45 + 20) << "  .   /   |   \\   ." << endl;
+     cout << setw(45 + 21) << " /   .    |    .   \\" << endl;
+     cout << setw(45 + 22) << ":   /     .     \\   :" << endl;
+     cout << setw(45 + 22) << "`~.:.     |     .:.~'" << endl;
      cout << endl
-          << "Insert selection: ";
+          << setw(65) << "Insert selection: ";
      cin >> selection;
 
      switch (selection)
@@ -89,10 +88,10 @@ void Merchandise::receipt(vector<string> selectedmerchItems)
      float totalPrice = calculateTotalPrice(selectedmerchItems);
 
      // Display the receipt
-     cout << "---------------- Receipt ----------------" << endl;
-     cout << "ID Token: " << idToken << endl;
-     cout << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
-     cout << "----------------------------------------" << endl;
+     cout << setw(36 + 42) << "---------------- Receipt ----------------" << endl;
+     cout << setw(36 + 11) << "ID Token: " << idToken << endl;
+     cout << setw(36 + 15) << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
+     cout << setw(36 + 41) << "----------------------------------------" << endl;
 
      // Store the receipt information in a file
      ofstream file("receiptMerchandise.csv", ios::app);
@@ -158,10 +157,10 @@ void GalacticBootcamp::bookRestaurant()
 {
      greetings();
 
-     cout << "Available Merchandise in Galactic Bootcamp" << endl;
+     cout << setw(76) << "Available Merchandise in Galactic Bootcamp" << endl;
      for (int i = 0; i < merchItems.size(); i++)
      {
-          cout << "(" << i + 1 << ") " << merchItems[i] << " - $" << merchPrices[i] << endl;
+          cout << setw(42) << "(" << i + 1 << ") " << merchItems[i] << " - $" << merchPrices[i] << endl;
      }
 
      cout << endl;
@@ -169,7 +168,7 @@ void GalacticBootcamp::bookRestaurant()
      int merchChoice;
      do
      {
-          cout << "Select a merch item (enter 0 to finish): ";
+          cout << setw(76) << "Select a merch item (enter 0 to finish): ";
           cin >> merchChoice;
           if (merchChoice > 0 && merchChoice <= merchItems.size())
           {
@@ -180,10 +179,10 @@ void GalacticBootcamp::bookRestaurant()
      // Perform the booking based on the selected options
      greetings();
      cout << endl;
-     cout << "Merchandise selected:" << endl;
+     cout << setw(40 + 25) << "Merchandise selected:" << endl;
      for (const auto &merch : selectedmerchItems)
      {
-          cout << merch << endl;
+          cout << setw(56) << merch << endl;
      }
      cout << endl;
      receipt(selectedmerchItems);
@@ -193,10 +192,10 @@ void ParkEmporium::bookRestaurant()
 {
      greetings();
 
-     cout << "Available Merchandise in Park Emporium:" << endl;
+     cout << setw(76) << "Available Merchandise in Park Emporium:" << endl;
      for (int i = 0; i < merchItems.size(); i++)
      {
-          cout << "(" << i + 1 << ") " << merchItems[i] << " - $" << merchPrices[i] << endl;
+          cout << setw(42) << "(" << i + 1 << ") " << merchItems[i] << " - $" << merchPrices[i] << endl;
      }
 
      cout << endl;
@@ -204,7 +203,7 @@ void ParkEmporium::bookRestaurant()
      int merchChoice;
      do
      {
-          cout << "Select a merch item (enter 0 to finish): ";
+          cout << setw(76) << "Select a merch item (enter 0 to finish): ";
           cin >> merchChoice;
           if (merchChoice > 0 && merchChoice <= merchItems.size())
           {
@@ -214,11 +213,11 @@ void ParkEmporium::bookRestaurant()
 
      // Perform the booking based on the selected options
      greetings();
-
-     cout << "Merchandise selected:" << endl;
+     cout << endl;
+     cout << setw(40 + 25) << "Merchandise selected:" << endl;
      for (const auto &merch : selectedmerchItems)
      {
-          cout << merch << endl;
+          cout << setw(56) << merch << endl;
      }
      cout << endl;
      receipt(selectedmerchItems);
@@ -228,10 +227,10 @@ void RealmOfWonders::bookRestaurant()
 {
      greetings();
 
-     cout << "Available Merchandise in Realm of Wonders:" << endl;
+     cout << setw(76) << "Available Merchandise in Realm of Wonders:" << endl;
      for (int i = 0; i < merchItems.size(); i++)
      {
-          cout << "(" << i + 1 << ") " << merchItems[i] << " - $" << merchPrices[i] << endl;
+          cout << setw(42) << "(" << i + 1 << ") " << merchItems[i] << " - $" << merchPrices[i] << endl;
      }
 
      cout << endl;
@@ -239,7 +238,7 @@ void RealmOfWonders::bookRestaurant()
      int merchChoice;
      do
      {
-          cout << "Select a merch item (enter 0 to finish): ";
+          cout << setw(76) << "Select a merch item (enter 0 to finish): ";
           cin >> merchChoice;
           if (merchChoice > 0 && merchChoice <= merchItems.size())
           {
@@ -249,11 +248,11 @@ void RealmOfWonders::bookRestaurant()
 
      // Perform the booking based on the selected options
      greetings();
-
-     cout << "Merchandise selected:" << endl;
+     cout << endl;
+     cout << setw(40 + 25) << "Merchandise selected:" << endl;
      for (const auto &merch : selectedmerchItems)
      {
-          cout << merch << endl;
+          cout << setw(56) << merch << endl;
      }
      cout << endl;
      receipt(selectedmerchItems);
