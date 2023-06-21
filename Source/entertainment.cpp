@@ -10,7 +10,6 @@ using namespace std;
 
 void Entertainment::bookEntertainment(int choice, Authentication &auth)
 {
-
      Entertainment *entertainment = nullptr;
      switch (choice)
      {
@@ -233,8 +232,8 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Bumper Cars, " << queueSize << ", " << idToken << ", " << time.getCurrentTime() << endl; // Write booking data to the file
-          bookingFile.close();                                                                                                             // Close the booking file
+          bookingFile << auth.getUsername() << ", Bumper Cars, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
+          bookingFile.close();                                                                                                              // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else
@@ -261,8 +260,8 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Carousel, " << queueSize << ", " << idToken << ", " << time.getCurrentTime() << endl; // Write booking data to the file
-          bookingFile.close();                                                                                                          // Close the booking file
+          bookingFile << auth.getUsername() << ", Carousel, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
+          bookingFile.close();                                                                                                           // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else
@@ -290,8 +289,8 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
 
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Roller Coaster, " << queueSize << ", " << idToken << ", " << time.getCurrentTime() << endl; // Write booking data to the file
-          bookingFile.close();                                                                                                                // Close the booking file
+          bookingFile << auth.getUsername() << ", Roller Coaster, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
+          bookingFile.close();                                                                                                                 // Close the booking file
           cout << "Booking successful!" << endl;
      }
      else

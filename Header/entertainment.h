@@ -16,8 +16,8 @@ protected:
 
 public:
     Entertainment(){};
-    Token token;
-    TimeProvider time;
+    Token token;        // composition
+    TimeProvider *time; // aggregation
     int getCapacityFromCSV(const string &filename, const string &rideName);
     void mainMenu(Authentication &auth);
     virtual void bookEntertainment(int choice, Authentication &auth); // polymorphism (overriden method)
