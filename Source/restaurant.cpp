@@ -34,10 +34,6 @@ void Restaurant::receipt(vector<string> selectedFoodItems, vector<string> select
 
 float Restaurant::calculateTotalPrice(vector<string> selectedFoodItems, vector<string> selectedBeverageItems)
 {
-    // Calculate the total price based on the selected food and beverage items
-    // Use the vectors foodItems, foodPrices, beverageItems, beveragePrices
-
-    // For example:
     for (int i = 0; i < selectedFoodItems.size(); ++i)
     {
         int foodIndex = find(foodItems.begin(), foodItems.end(), selectedFoodItems[i]) - foodItems.begin();

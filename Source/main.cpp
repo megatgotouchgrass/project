@@ -7,6 +7,26 @@
 
 using namespace std;
 
+class GuestServices : public Init
+{
+    string name;
+    string locationX;
+    string locationY;
+    string remarks;
+
+public:
+    GuestServices(string n, string x, string y, string r) : name(n), locationX(x), locationY(y), remarks(r){};
+    void showServices()
+    {
+
+        cout << "    "
+             << "The " << name << " is located at"
+             << "(" << locationX << "," << locationY << "). "
+             << "Remarks: " << remarks;
+        cout << endl;
+    };
+};
+
 int main()
 {
     Init init;
@@ -15,12 +35,20 @@ int main()
     Restaurant restaurant;
     Merchandise merchandise;
 
+    // Array of Object
+    GuestServices guestservice[3] = {
+        GuestServices("Information Counter", "3.919293", "2.123324", "Near the Roller Coaster"),
+        GuestServices("Smoking Area", "19.2313412", "5.1234312", "Right by Bronco Bistro"),
+        GuestServices("Locker Rooms", "3.0003", "2.129924", "The opposite of Galaxy Wonders Merchandise Store"),
+    };
+
     int selection;
     bool userExist;
     bool accessMainMenu;
     char systemRun;
 
     init.greetings();
+
     userExist = init.checkIfUserExist();
 
     if (userExist)
@@ -47,6 +75,14 @@ int main()
                 break;
             case 4:
                 entertainment.showBookings(auth);
+                break;
+            case 5:
+                cout << endl;
+                init.greetings();
+                for (int i = 0; i < 3; i++)
+                {
+                    guestservice[i].showServices();
+                }
                 break;
             }
         };

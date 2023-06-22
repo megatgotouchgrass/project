@@ -56,14 +56,15 @@ int Init::mainMenu()
          << endl;
     cout << setw(65) << "2 : Restaurant" << endl;
     cout << setw(71) << "3 : Merchandise Shop" << endl;
-    cout << setw(65) << "4 : Queue Time" << endl
+    cout << setw(65) << "4 : Queue Time" << endl;
+    cout << setw(69) << "5 : Guest Services" << endl
          << endl;
 
     do
     {
         cout << setw(60) << "Selection : ";
         cin >> choice;
-    } while (!(choice > 0 && choice < 5));
+    } while (!(choice > 0 && choice < 6));
 
     return choice;
 }
