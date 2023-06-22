@@ -128,11 +128,11 @@ Carousel::Carousel()
      capacity = getCapacityFromCSV("entertainment.csv", "Carousel");
      if (capacity != -1)
      {
-          cout << "Capacity: " << capacity << endl;
+          cout << setw(64) << "Capacity: " << capacity << endl;
      }
      else
      {
-          cout << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
+          cout << setw(92) << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
      }
 }
 RollerCoaster::RollerCoaster()
@@ -141,11 +141,11 @@ RollerCoaster::RollerCoaster()
      capacity = getCapacityFromCSV("entertainment.csv", "Roller Coaster");
      if (capacity != -1)
      {
-          cout << "Capacity: " << capacity << endl;
+          cout << setw(64) << "Capacity: " << capacity << endl;
      }
      else
      {
-          cout << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
+          cout << setw(92) << "Error: Unable to find capacity for Roller Coaster or open the file." << endl;
      }
 }
 
@@ -214,6 +214,41 @@ void Entertainment::updateCapacity(const string &rowToUpdate, int newCapacity)
      outfile.close(); // Close the file
 }
 
+void Entertainment::showBookings(Authentication &auth)
+{
+     greetings();
+     ifstream bookingsFile("bookings.csv");
+     if (bookingsFile.is_open())
+     {
+          string line;
+          while (getline(bookingsFile, line))
+          {
+               istringstream iss(line);
+               string field;
+               vector<string> fields;
+
+               // Split the line into fields
+               while (getline(iss, field, ','))
+               {
+                    fields.push_back(field);
+               }
+
+               // Display the booking information
+               if (fields[0] == auth.getUsername())
+               {
+                    cout << setw(40) << "Entertainment: " << fields[1] << "          ";
+                    cout << "Queue Time : " << fields[5];
+                    cout << endl;
+               }
+          }
+          bookingsFile.close();
+     }
+     else
+     {
+          cout << "Error: Unable to open the bookings file." << endl;
+     }
+}
+
 void BumperCars::bookEntertainment(int choice, Authentication &auth)
 {
 
@@ -227,14 +262,13 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
          << setw(50 + 20) << "Booking Bumper Cars..." << endl;
      string idToken = token.generateUniqueToken();
 
-     // Save booking information to a CSV file
      updateCapacity("Bumper Cars", capacity - queueSize);
 
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Bumper Cars, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
-          bookingFile.close();                                                                                                              // Close the booking file
+          bookingFile << auth.getUsername() << ", Bumper Cars, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << ", " << time->getWaitingTime("BumperCars") << endl; // Write booking data to the file
+          bookingFile.close();                                                                                                                                                            // Close the booking file
           cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
           cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
      }
@@ -254,14 +288,13 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
           << setw(50 + 20) << "Booking Carousel..." << endl;
      string idToken = token.generateUniqueToken();
 
-     // Save booking information to a CSV file
      updateCapacity("Carousel", capacity - queueSize);
 
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Carousel, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
-          bookingFile.close();                                                                                                           // Close the booking file
+          bookingFile << auth.getUsername() << ", Carousel, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << ", " << time->getWaitingTime("Carousel") << endl; // Write booking data to the file
+          bookingFile.close();                                                                                                                                                       // Close the booking file
           cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
           cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
      }
@@ -269,8 +302,6 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
      {
           cout << setw(40 + 39) << "Error: Unable to open the booking file." << endl;
      }
-
-     // Update waiting_capacity file
 }
 
 void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
@@ -283,15 +314,14 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
           << setw(50 + 20) << "Booking Roller Coaster..." << endl;
      string idToken = token.generateUniqueToken();
 
-     // Save booking information to a CSV file
      updateCapacity("Roller Coaster", capacity - queueSize);
 
      ofstream bookingFile("bookings.csv", ios::app); // Open booking file in append mode
 
      if (bookingFile.is_open())
      {
-          bookingFile << auth.getUsername() << ", Roller Coaster, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << endl; // Write booking data to the file
-          bookingFile.close();                                                                                                                 // Close the booking file
+          bookingFile << auth.getUsername() << ", Roller Coaster, " << queueSize << ", " << idToken << ", " << time->getCurrentTime() << ", " << time->getWaitingTime("RollerCoaster") << endl; // Write booking data to the file
+          bookingFile.close();                                                                                                                                                                  // Close the booking file
           cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
           cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
      }
@@ -299,6 +329,4 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
      {
           cout << setw(40 + 39) << "Error: Unable to open the booking file." << endl;
      }
-
-     // Update waiting_capacity file
 }

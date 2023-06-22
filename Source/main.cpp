@@ -20,15 +20,15 @@ int main()
     bool accessMainMenu;
     char systemRun;
 
+    init.greetings();
+    userExist = init.checkIfUserExist();
+
+    if (userExist)
+        accessMainMenu = auth.userLogIn();
+    else
+        accessMainMenu = auth.userSignUp();
     do
     {
-        init.greetings();
-        userExist = init.checkIfUserExist();
-
-        if (userExist)
-            accessMainMenu = auth.userLogIn();
-        else
-            accessMainMenu = auth.userSignUp();
 
         if (accessMainMenu)
         {
@@ -44,6 +44,9 @@ int main()
                 break;
             case 3:
                 merchandise.mainMenu();
+                break;
+            case 4:
+                entertainment.showBookings(auth);
                 break;
             }
         };

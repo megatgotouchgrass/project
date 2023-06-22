@@ -6,7 +6,7 @@
 #include <fstream>
 #include <string>
 #include <token.h>
-#include "timer.h"
+#include "timeprovider.h"
 
 class Entertainment : public Init
 {
@@ -29,7 +29,7 @@ public:
         capacity -= bookedSeats;
     }
     void updateCapacity(const string &rowToUpdate, int newCapacity);
-    ~Entertainment(){};
+    void showBookings(Authentication &auth);
 };
 
 class BumperCars : public Entertainment
