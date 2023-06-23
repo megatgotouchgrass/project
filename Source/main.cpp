@@ -4,28 +4,9 @@
 #include "entertainment.h"
 #include "restaurant.h"
 #include "merchandise.h"
+#include "guestServices.h"
 
 using namespace std;
-
-class GuestServices : public Init
-{
-    string name;
-    string locationX;
-    string locationY;
-    string remarks;
-
-public:
-    GuestServices(string n, string x, string y, string r) : name(n), locationX(x), locationY(y), remarks(r){};
-    void showServices()
-    {
-
-        cout << "    "
-             << "The " << name << " is located at"
-             << "(" << locationX << "," << locationY << "). "
-             << "Remarks: " << remarks;
-        cout << endl;
-    };
-};
 
 int main()
 {
