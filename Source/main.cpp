@@ -66,6 +66,11 @@ int main()
                 }
                 break;
             }
+        }
+        else
+        {
+            cout << setw(76) << "Unable to recognize username or password";
+            break;
         };
 
         cout << endl

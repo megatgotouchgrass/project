@@ -15,6 +15,41 @@ enum TT_Input
     RETURN = 32
 };
 
+string Authentication::passwordInput()
+{
+    string password = "";
+    char password_ch;
+    while (true)
+    {
+        password_ch = getch();
+
+        if (password_ch < TT_Input::RETURN && password_ch != TT_Input::BACKSPACE)
+        {
+            cout << endl;
+            return password;
+        }
+
+        // Check whether the user
+        // pressed backspace
+        if (password_ch == TT_Input::BACKSPACE)
+        {
+
+            // Check if password is empty or not
+            if (password.length() == 0)
+                continue;
+            else
+            {
+
+                // Removes last character
+                password.pop_back();
+
+                continue;
+            }
+        }
+        password.push_back(password_ch);
+    }
+}
+
 bool Authentication::userSignUp()
 {
     greetings();
@@ -22,24 +57,34 @@ bool Authentication::userSignUp()
 
     do
     {
-        cout << setw(80) << "Do you wish to create a new account? (y/n) : ";
-        cin >> continueOperation;
-        if (continueOperation == 'Y' || continueOperation == 'y')
+        try
         {
-            greetings();
-            cout << setw(62) << "Enter your username: ";
-            cin >> username;
+            cout << setw(80) << "Do you wish to create a new account? (y/n) : ";
+            cin >> continueOperation;
+            if (continueOperation == 'Y' || continueOperation == 'y')
+            {
+                greetings();
+                cout << setw(62) << "Enter your username: ";
+                cin >> username;
 
-            cout << setw(62) << "Enter your password: ";
-            cin >> password;
+                cout << setw(62) << "Enter your password: ";
+                password = passwordInput();
 
-            updateDatabase();
-            return true;
+                fflush(stdin);
+                updateDatabase();
+                return true;
+            }
+            else if (continueOperation == 'N' || continueOperation == 'n')
+            {
+                return false;
+            }
+            else
+                throw e;
         }
-        else if (continueOperation == 'N' || continueOperation == 'n')
+        catch (ErrorHandler e)
         {
-            return false;
-        };
+            e.invalidInput();
+        }
     } while (!(continueOperation == 'Y' || continueOperation == 'y' || continueOperation == 'N' || continueOperation == 'n'));
 
     return true;
@@ -55,31 +100,49 @@ bool Authentication::userLogIn()
     cin >> continueOperation;
     do
     {
-        if (continueOperation == 'Y' || continueOperation == 'y')
+        try
         {
+            if (continueOperation == 'Y' || continueOperation == 'y')
+            {
 
-            greetings();
-            cout << setw(62) << "Enter your username: ";
-            cin >> username;
+                greetings();
+                cout << setw(62) << "Enter your username: ";
+                cin >> username;
 
-            cout << setw(62) << "Enter your password: ";
-            cin >> password;
+                cout << setw(62) << "Enter your password: ";
+                password = passwordInput();
 
-            accessed = checkDatabase();
+                accessed = checkDatabase();
+            }
+            else if (continueOperation == 'N' || continueOperation == 'n')
+            {
+                return false;
+            }
+            else
+                throw e;
         }
-        else if (continueOperation == 'N' || continueOperation == 'n')
+        catch (ErrorHandler e)
         {
-            return false;
+            e.invalidInput();
         }
+
     } while (!(continueOperation == 'Y' || continueOperation == 'y' || continueOperation == 'N' || continueOperation == 'n'));
 
-    if (accessed)
+    try
     {
-        return true;
+        if (accessed)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+            throw e;
+        }
     }
-    else
+    catch (ErrorHandler e)
     {
-        return false;
+        e.invalidInput();
     }
 };
 
@@ -98,7 +161,7 @@ bool Authentication::updateDatabase()
             file << endl;
         }
 
-        file << username << ", " << password << endl;
+        file << username << "," << password << endl;
         file.close();
 
         greetings();
@@ -110,7 +173,7 @@ bool Authentication::checkDatabase()
 {
     string line, fileUsername, filePassword;
     ifstream file("users.csv");
-    bool found;
+    bool found = false;
 
     if (!file)
     {

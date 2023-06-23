@@ -3,6 +3,7 @@
 #include "init.h"
 #include <string>
 #include <iomanip>
+#include "errorHandler.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ private:
 
 public:
     Authentication(){};
+    ErrorHandler e;
     bool userSignUp();
     bool userLogIn();
     string passwordInput();
