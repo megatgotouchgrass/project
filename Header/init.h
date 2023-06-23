@@ -5,11 +5,12 @@
 
 class Init
 {
+
 public:
+    void greetings();
     ErrorHandler e;
 
     Init(){};
-    void greetings();
     bool checkIfUserExist();
     int mainMenu();
     ~Init(){};

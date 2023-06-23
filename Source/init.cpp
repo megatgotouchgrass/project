@@ -5,8 +5,9 @@ using namespace std;
 
 void Init::greetings()
 {
-    system("cls");
+    system("cls"); // Clear the screen
 
+    // Show the logo
     cout << "\033[1;34m                                                                                                                  " << endl;
     cout << "\033[0;34m,---.               |                       ,---.                    --.--|                       ,---.          |     " << endl;
     cout << "\033[0;36m|    ,---.,---.,   .|---.,---.,---.,---.    |    ,---..    ,,---.      |  |---.,---.,-.-.,---.    |---',---.,---.|__/  " << endl;

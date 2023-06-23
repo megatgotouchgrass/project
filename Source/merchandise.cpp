@@ -59,19 +59,19 @@ void Merchandise::mainMenu()
      case 1:
      {
           GalacticBootcamp galactic;
-          galactic.bookRestaurant();
+          galactic.buyMerchandise();
           break;
      }
      case 2:
      {
           ParkEmporium park;
-          park.bookRestaurant();
+          park.buyMerchandise();
           break;
      }
      case 3:
      {
           RealmOfWonders realm;
-          realm.bookRestaurant();
+          realm.buyMerchandise();
           break;
      }
      default:
@@ -161,7 +161,7 @@ const vector<float> &Merchandise::getMerchPrices() const
      return merchPrices;
 }
 
-void GalacticBootcamp::bookRestaurant()
+void GalacticBootcamp::buyMerchandise()
 {
      greetings();
 
@@ -207,7 +207,7 @@ void GalacticBootcamp::bookRestaurant()
      receipt(selectedmerchItems);
 }
 
-void ParkEmporium::bookRestaurant()
+void ParkEmporium::buyMerchandise()
 {
      greetings();
 
@@ -253,7 +253,7 @@ void ParkEmporium::bookRestaurant()
      receipt(selectedmerchItems);
 }
 
-void RealmOfWonders::bookRestaurant()
+void RealmOfWonders::buyMerchandise()
 {
      greetings();
 

@@ -17,7 +17,6 @@ class Merchandise : public Init
 protected:
     vector<string> merchItems;
     vector<float> merchPrices;
-
     float totalMerchPrice;
 
 public:
@@ -36,7 +35,7 @@ class GalacticBootcamp : public Merchandise
 private:
 public:
     GalacticBootcamp();
-    void bookRestaurant();
+    void buyMerchandise();
 };
 
 class ParkEmporium : public Merchandise
@@ -44,7 +43,7 @@ class ParkEmporium : public Merchandise
 private:
 public:
     ParkEmporium();
-    void bookRestaurant();
+    void buyMerchandise();
 };
 
 class RealmOfWonders : public Merchandise
@@ -52,7 +51,7 @@ class RealmOfWonders : public Merchandise
 private:
 public:
     RealmOfWonders();
-    void bookRestaurant();
+    void buyMerchandise();
 };
 
 #endif
