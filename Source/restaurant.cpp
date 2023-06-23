@@ -19,16 +19,23 @@ void Restaurant::receipt(vector<string> selectedFoodItems, vector<string> select
 
     // Store the receipt information in a file
     ofstream file("receiptRestaurant.csv", ios::app);
-    if (file.is_open())
+    try
     {
-        file << "ID Token: " << idToken << endl;
-        file << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
-        file << "----------------------------------------" << endl;
-        file.close();
+        if (file.is_open())
+        {
+            file << "ID Token: " << idToken << endl;
+            file << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
+            file << "----------------------------------------" << endl;
+            file.close();
+        }
+        else
+        {
+            throw e;
+        }
     }
-    else
+    catch (ErrorHandler e)
     {
-        cout << "Error: Unable to open the file." << endl;
+        e.fileError();
     }
 }
 
@@ -160,15 +167,28 @@ void BroncoBistro::bookRestaurant()
     cout << endl;
     vector<string> selectedFoodItems;
     int foodChoice;
+
     do
     {
         cout << setw(40 + 41) << "Select a food item (enter 0 to finish): ";
         cin >> foodChoice;
-        if (foodChoice > 0 && foodChoice <= foodItems.size())
+        try
         {
-            selectedFoodItems.push_back(foodItems[foodChoice - 1]);
+            if (foodChoice > 0 && foodChoice <= foodItems.size())
+            {
+                selectedFoodItems.push_back(foodItems[foodChoice - 1]);
+            }
+            else
+            {
+                throw e;
+            }
         }
+        catch (ErrorHandler e)
+        {
+            e.invalidInput();
+        };
     } while (foodChoice != 0);
+
     cout << endl;
     cout << setw(40 + 26) << "Available Beverage Items:" << endl;
     for (int i = 0; i < beverageItems.size(); i++)
@@ -183,9 +203,20 @@ void BroncoBistro::bookRestaurant()
     {
         cout << setw(40 + 45) << "Select a beverage item (enter 0 to finish): ";
         cin >> beverageChoice;
-        if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
+        try
         {
-            selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
+            if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
+            {
+                selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
+            }
+            else
+            {
+                throw e;
+            }
+        }
+        catch (ErrorHandler e)
+        {
+            e.invalidInput();
         }
     } while (beverageChoice != 0);
 
@@ -229,15 +260,28 @@ void EasternSpice::bookRestaurant()
     cout << endl;
     vector<string> selectedFoodItems;
     int foodChoice;
+
     do
     {
         cout << setw(40 + 41) << "Select a food item (enter 0 to finish): ";
         cin >> foodChoice;
-        if (foodChoice > 0 && foodChoice <= foodItems.size())
+        try
         {
-            selectedFoodItems.push_back(foodItems[foodChoice - 1]);
+            if (foodChoice > 0 && foodChoice <= foodItems.size())
+            {
+                selectedFoodItems.push_back(foodItems[foodChoice - 1]);
+            }
+            else
+            {
+                throw e;
+            }
         }
+        catch (ErrorHandler e)
+        {
+            e.invalidInput();
+        };
     } while (foodChoice != 0);
+
     cout << endl;
     cout << setw(40 + 26) << "Available Beverage Items:" << endl;
     for (int i = 0; i < beverageItems.size(); i++)
@@ -248,13 +292,25 @@ void EasternSpice::bookRestaurant()
     vector<string> selectedBeverageItems;
     int beverageChoice;
     cout << endl;
+
     do
     {
         cout << setw(40 + 45) << "Select a beverage item (enter 0 to finish): ";
         cin >> beverageChoice;
-        if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
+        try
         {
-            selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
+            if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
+            {
+                selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
+            }
+            else
+            {
+                throw e;
+            }
+        }
+        catch (ErrorHandler e)
+        {
+            e.invalidInput();
         }
     } while (beverageChoice != 0);
 
@@ -297,15 +353,28 @@ void LaFiestaMexicana::bookRestaurant()
     cout << endl;
     vector<string> selectedFoodItems;
     int foodChoice;
+
     do
     {
         cout << setw(40 + 41) << "Select a food item (enter 0 to finish): ";
         cin >> foodChoice;
-        if (foodChoice > 0 && foodChoice <= foodItems.size())
+        try
         {
-            selectedFoodItems.push_back(foodItems[foodChoice - 1]);
+            if (foodChoice > 0 && foodChoice <= foodItems.size())
+            {
+                selectedFoodItems.push_back(foodItems[foodChoice - 1]);
+            }
+            else
+            {
+                throw e;
+            }
         }
+        catch (ErrorHandler e)
+        {
+            e.invalidInput();
+        };
     } while (foodChoice != 0);
+
     cout << endl;
     cout << setw(40 + 26) << "Available Beverage Items:" << endl;
     for (int i = 0; i < beverageItems.size(); i++)
@@ -316,13 +385,25 @@ void LaFiestaMexicana::bookRestaurant()
     vector<string> selectedBeverageItems;
     int beverageChoice;
     cout << endl;
+
     do
     {
         cout << setw(40 + 45) << "Select a beverage item (enter 0 to finish): ";
         cin >> beverageChoice;
-        if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
+        try
         {
-            selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
+            if (beverageChoice > 0 && beverageChoice <= beverageItems.size())
+            {
+                selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
+            }
+            else
+            {
+                throw e;
+            }
+        }
+        catch (ErrorHandler e)
+        {
+            e.invalidInput();
         }
     } while (beverageChoice != 0);
 

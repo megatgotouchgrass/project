@@ -11,5 +11,7 @@ class ErrorHandler
 {
 public:
     void invalidInput();
+    void limitCapacity();
+    void fileError();
 };
 #endif

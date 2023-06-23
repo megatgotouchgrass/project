@@ -71,6 +71,17 @@ int Init::mainMenu()
     {
         cout << setw(60) << "Selection : ";
         cin >> choice;
+
+        try
+        {
+            if (choice < 1 || choice > 5)
+                throw e;
+        }
+        catch (ErrorHandler e)
+        {
+            e.invalidInput();
+        }
+
     } while (!(choice > 0 && choice < 6));
 
     return choice;

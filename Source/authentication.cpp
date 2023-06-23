@@ -96,10 +96,10 @@ bool Authentication::userLogIn()
     char continueOperation;
     bool accessed;
 
-    cout << setw(86) << "Do you wish to login to the existing account? (y/n) : ";
-    cin >> continueOperation;
     do
     {
+        cout << setw(86) << "Do you wish to login to the existing account? (y/n) : ";
+        cin >> continueOperation;
         try
         {
             if (continueOperation == 'Y' || continueOperation == 'y')
@@ -128,21 +128,14 @@ bool Authentication::userLogIn()
 
     } while (!(continueOperation == 'Y' || continueOperation == 'y' || continueOperation == 'N' || continueOperation == 'n'));
 
-    try
+    if (accessed)
     {
-        if (accessed)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-            throw e;
-        }
+        return true;
     }
-    catch (ErrorHandler e)
+    else
     {
-        e.invalidInput();
+        return false;
+        throw e;
     }
 };
 

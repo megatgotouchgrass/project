@@ -95,16 +95,24 @@ void Merchandise::receipt(vector<string> selectedmerchItems)
 
      // Store the receipt information in a file
      ofstream file("receiptMerchandise.csv", ios::app);
-     if (file.is_open())
+     try
      {
-          file << "ID Token: " << idToken << endl;
-          file << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
-          file << "----------------------------------------" << endl;
-          file.close();
+
+          if (file.is_open())
+          {
+               file << "ID Token: " << idToken << endl;
+               file << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
+               file << "----------------------------------------" << endl;
+               file.close();
+          }
+          else
+          {
+               throw e;
+          }
      }
-     else
+     catch (ErrorHandler e)
      {
-          cout << "Error: Unable to open the file." << endl;
+          e.fileError();
      }
 }
 
@@ -170,9 +178,20 @@ void GalacticBootcamp::bookRestaurant()
      {
           cout << setw(76) << "Select a merch item (enter 0 to finish): ";
           cin >> merchChoice;
-          if (merchChoice > 0 && merchChoice <= merchItems.size())
+          try
           {
-               selectedmerchItems.push_back(merchItems[merchChoice - 1]);
+               if (merchChoice > 0 && merchChoice <= merchItems.size())
+               {
+                    selectedmerchItems.push_back(merchItems[merchChoice - 1]);
+               }
+               else
+               {
+                    throw e;
+               }
+          }
+          catch (ErrorHandler e)
+          {
+               e.invalidInput();
           }
      } while (merchChoice != 0);
 
@@ -205,9 +224,20 @@ void ParkEmporium::bookRestaurant()
      {
           cout << setw(76) << "Select a merch item (enter 0 to finish): ";
           cin >> merchChoice;
-          if (merchChoice > 0 && merchChoice <= merchItems.size())
+          try
           {
-               selectedmerchItems.push_back(merchItems[merchChoice - 1]);
+               if (merchChoice > 0 && merchChoice <= merchItems.size())
+               {
+                    selectedmerchItems.push_back(merchItems[merchChoice - 1]);
+               }
+               else
+               {
+                    throw e;
+               }
+          }
+          catch (ErrorHandler e)
+          {
+               e.invalidInput();
           }
      } while (merchChoice != 0);
 
@@ -236,13 +266,25 @@ void RealmOfWonders::bookRestaurant()
      cout << endl;
      vector<string> selectedmerchItems;
      int merchChoice;
+
      do
      {
           cout << setw(76) << "Select a merch item (enter 0 to finish): ";
           cin >> merchChoice;
-          if (merchChoice > 0 && merchChoice <= merchItems.size())
+          try
           {
-               selectedmerchItems.push_back(merchItems[merchChoice - 1]);
+               if (merchChoice > 0 && merchChoice <= merchItems.size())
+               {
+                    selectedmerchItems.push_back(merchItems[merchChoice - 1]);
+               }
+               else
+               {
+                    throw e;
+               }
+          }
+          catch (ErrorHandler e)
+          {
+               e.invalidInput();
           }
      } while (merchChoice != 0);
 

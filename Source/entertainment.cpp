@@ -42,31 +42,41 @@ void Entertainment::mainMenu(Authentication &auth)
 
      do
      {
-          cout << setw(67) << "(1) Bumper Cars" << endl;
-          cout << setw(62) << "  _______" << endl;
-          cout << setw(66) << " /|_||_\\`.__" << endl;
-          cout << setw(67) << "(   _    _ _\\" << endl;
-          cout << setw(67) << "=`-(_)--(_)-'" << endl
-               << endl;
+          try
+          {
+               cout << setw(67) << "(1) Bumper Cars" << endl;
+               cout << setw(62) << "  _______" << endl;
+               cout << setw(66) << " /|_||_\\`.__" << endl;
+               cout << setw(67) << "(   _    _ _\\" << endl;
+               cout << setw(67) << "=`-(_)--(_)-'" << endl
+                    << endl;
 
-          cout << setw(64) << "(2) Carousel" << endl;
-          cout << setw(54 + 12) << "        ,--," << endl;
-          cout << setw(54 + 12) << "  _ ___/ /`|" << endl;
-          cout << setw(54 + 10) << " ;( )__, )" << endl;
-          cout << setw(54 + 11) << "; //   '--;" << endl;
-          cout << setw(54 + 10) << "  '^    '^" << endl
-               << endl;
+               cout << setw(64) << "(2) Carousel" << endl;
+               cout << setw(54 + 12) << "        ,--," << endl;
+               cout << setw(54 + 12) << "  _ ___/ /`|" << endl;
+               cout << setw(54 + 10) << " ;( )__, )" << endl;
+               cout << setw(54 + 11) << "; //   '--;" << endl;
+               cout << setw(54 + 10) << "  '^    '^" << endl
+                    << endl;
 
-          cout << setw(70) << "(3) Roller Coaster" << endl;
-          cout << setw(46 + 28) << " _                     .===." << endl;
-          cout << setw(46 + 30) << "|H|        .--.      .:'   `:." << endl;
-          cout << setw(46 + 30) << "|H|`.     /||||'     ||     ||" << endl;
-          cout << setw(46 + 30) << "|//||:. .'||||||`.   `:.   .:'" << endl;
-          cout << setw(46 + 32) << "|:`:.--'||||||||||`--..`=:='... " << endl
-               << endl;
+               cout << setw(70) << "(3) Roller Coaster" << endl;
+               cout << setw(46 + 28) << " _                     .===." << endl;
+               cout << setw(46 + 30) << "|H|        .--.      .:'   `:." << endl;
+               cout << setw(46 + 30) << "|H|`.     /||||'     ||     ||" << endl;
+               cout << setw(46 + 30) << "|//||:. .'||||||`.   `:.   .:'" << endl;
+               cout << setw(46 + 32) << "|:`:.--'||||||||||`--..`=:='... " << endl
+                    << endl;
 
-          cout << setw(65) << "Selection: ";
-          cin >> choice;
+               cout << setw(65) << "Selection: ";
+               cin >> choice;
+
+               if (choice < 1 || choice > 3)
+                    throw e;
+          }
+          catch (ErrorHandler e)
+          {
+               e.invalidInput();
+          }
      } while (!(choice > 0 && choice < 4));
 
      bookEntertainment(choice, auth);
@@ -176,7 +186,7 @@ void Entertainment::updateCapacity(const string &rowToUpdate, int newCapacity)
           stringstream ss(row);
           string item;
 
-          // Split the row into two parts: name and capacity
+          // Split the column into two parts: name and capacity
           getline(ss, item, ',');
           string name = item;
           getline(ss, item, ',');
@@ -253,10 +263,26 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
 {
 
      int queueSize = 0;
-     cout
-         << setw(40 + 37) << "How many people will join the ride?: ";
-     cin >> queueSize;
-     cout << endl;
+     try
+     {
+          do
+          {
+
+               cout
+                   << setw(40 + 37) << "How many people will join the ride?: ";
+               cin >> queueSize;
+               cout << endl;
+
+               if (capacity - queueSize < 0)
+               {
+                    throw e;
+               }
+          } while (capacity - queueSize < 0);
+     }
+     catch (ErrorHandler e)
+     {
+          e.limitCapacity();
+     }
 
      cout
          << setw(50 + 20) << "Booking Bumper Cars..." << endl;
@@ -280,12 +306,30 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
 
 void Carousel::bookEntertainment(int choice, Authentication &auth)
 {
-     int queueSize;
-     cout
-         << setw(40 + 37) << "How many people will join the ride?: ";
-     cin >> queueSize;
-     cout << endl
-          << setw(50 + 20) << "Booking Carousel..." << endl;
+
+     int queueSize = 0;
+     try
+     {
+          do
+          {
+
+               cout
+                   << setw(40 + 37) << "How many people will join the ride?: ";
+               cin >> queueSize;
+               cout << endl;
+
+               if (capacity - queueSize < 0)
+               {
+                    throw e;
+               }
+          } while (capacity - queueSize < 0);
+     }
+     catch (ErrorHandler e)
+     {
+          e.limitCapacity();
+     }
+
+     cout << setw(50 + 20) << "Booking Carousel..." << endl;
      string idToken = token.generateUniqueToken();
 
      updateCapacity("Carousel", capacity - queueSize);
@@ -306,10 +350,28 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
 
 void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
 {
-     int queueSize;
-     cout
-         << setw(40 + 37) << "How many people will join the ride?: ";
-     cin >> queueSize;
+     int queueSize = 0;
+     try
+     {
+          do
+          {
+
+               cout
+                   << setw(40 + 37) << "How many people will join the ride?: ";
+               cin >> queueSize;
+               cout << endl;
+
+               if (capacity - queueSize < 0)
+               {
+                    throw e;
+               }
+          } while (capacity - queueSize < 0);
+     }
+     catch (ErrorHandler e)
+     {
+          e.limitCapacity();
+     }
+
      cout << endl
           << setw(50 + 20) << "Booking Roller Coaster..." << endl;
      string idToken = token.generateUniqueToken();
