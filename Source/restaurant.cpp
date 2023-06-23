@@ -95,28 +95,35 @@ void Restaurant::mainMenu()
     cin >>
         selection;
 
-    switch (selection)
+    try
     {
-    case 1:
-    {
-        BroncoBistro bistro;
-        bistro.bookRestaurant();
-        break;
+        switch (selection)
+        {
+        case 1:
+        {
+            BroncoBistro bistro;
+            bistro.bookRestaurant();
+            break;
+        }
+        case 2:
+        {
+            EasternSpice spice;
+            spice.bookRestaurant();
+            break;
+        }
+        case 3:
+        {
+            LaFiestaMexicana fiesta;
+            fiesta.bookRestaurant();
+            break;
+        }
+        default:
+            throw e;
+        }
     }
-    case 2:
+    catch (ErrorHandler e)
     {
-        EasternSpice spice;
-        spice.bookRestaurant();
-        break;
-    }
-    case 3:
-    {
-        LaFiestaMexicana fiesta;
-        fiesta.bookRestaurant();
-        break;
-    }
-    default:
-        cout << "Invalid selection!" << endl;
+        e.invalidInput();
     }
 }
 
