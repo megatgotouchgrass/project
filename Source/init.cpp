@@ -26,20 +26,27 @@ bool Init::checkIfUserExist()
     {
         cout << setw(76) << "Have you made an account before? (y/n): ";
         cin >> response;
+        try
+        {
 
-        if (response == 'Y' || response == 'y')
-        {
-            response2 = true;
+            if (response == 'Y' || response == 'y')
+            {
+                response2 = true;
+            }
+            else if (response == 'N' || response == 'n')
+            {
+                response2 = false;
+            }
+            else
+            {
+                throw e;
+            }
         }
-        else if (response == 'N' || response == 'n')
+        catch (ErrorHandler e)
         {
-            response2 = false;
-        }
-        else
-        {
-            cout << setw(73) << "Wrong input! Please insert again" << endl
-                 << endl;
-        }
+            e.invalidInput();
+        };
+
     } while (!(response == 'Y' || response == 'y' || response == 'N' || response == 'n'));
     return response2;
 };
