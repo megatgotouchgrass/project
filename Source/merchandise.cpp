@@ -54,28 +54,36 @@ void Merchandise::mainMenu()
           << setw(65) << "Insert selection: ";
      cin >> selection;
 
-     switch (selection)
+     try
      {
-     case 1:
-     {
-          GalacticBootcamp galactic;
-          galactic.buyMerchandise();
-          break;
+
+          switch (selection)
+          {
+          case 1:
+          {
+               GalacticBootcamp galactic;
+               galactic.buyMerchandise();
+               break;
+          }
+          case 2:
+          {
+               ParkEmporium park;
+               park.buyMerchandise();
+               break;
+          }
+          case 3:
+          {
+               RealmOfWonders realm;
+               realm.buyMerchandise();
+               break;
+          }
+          default:
+               throw e;
+          }
      }
-     case 2:
+     catch (ErrorHandler e)
      {
-          ParkEmporium park;
-          park.buyMerchandise();
-          break;
-     }
-     case 3:
-     {
-          RealmOfWonders realm;
-          realm.buyMerchandise();
-          break;
-     }
-     default:
-          cout << "Invalid selection!" << endl;
+          e.invalidInput();
      }
 }
 
