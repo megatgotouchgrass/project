@@ -15,41 +15,6 @@ enum TT_Input
     RETURN = 32
 };
 
-string Authentication::passwordInput()
-{
-    string password = "";
-    char password_ch;
-    while (true)
-    {
-        password_ch = getch();
-
-        if (password_ch < TT_Input::RETURN && password_ch != TT_Input::BACKSPACE)
-        {
-            cout << endl;
-            return password;
-        }
-
-        // Check whether the user
-        // pressed backspace
-        if (password_ch == TT_Input::BACKSPACE)
-        {
-
-            // Check if password is empty or not
-            if (password.length() == 0)
-                continue;
-            else
-            {
-
-                // Removes last character
-                password.pop_back();
-
-                continue;
-            }
-        }
-        password.push_back(password_ch);
-    }
-}
-
 bool Authentication::userSignUp()
 {
     greetings();
@@ -66,9 +31,8 @@ bool Authentication::userSignUp()
             cin >> username;
 
             cout << setw(62) << "Enter your password: ";
-            password = passwordInput();
+            cin >> password;
 
-            fflush(stdin);
             updateDatabase();
             return true;
         }
@@ -99,7 +63,7 @@ bool Authentication::userLogIn()
             cin >> username;
 
             cout << setw(62) << "Enter your password: ";
-            password = passwordInput();
+            cin >> password;
 
             accessed = checkDatabase();
         }
@@ -157,8 +121,8 @@ bool Authentication::checkDatabase()
     while (getline(file, line))
     {
         stringstream ss(line);
-        getline(ss, username, ',');
-        getline(ss, password, ',');
+        getline(ss, fileUsername, ',');
+        getline(ss, filePassword, ',');
 
         if (username == fileUsername && password == filePassword)
         {
