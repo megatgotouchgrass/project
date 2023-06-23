@@ -264,26 +264,22 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
 {
 
      int queueSize = 0;
-     try
+
+     do
      {
-          do
+
+          cout
+              << setw(40 + 37) << "How many people will join the ride?: ";
+          cin >> queueSize;
+          cout << endl;
+
+          if (capacity - queueSize < 0)
           {
-
-               cout
-                   << setw(40 + 37) << "How many people will join the ride?: ";
-               cin >> queueSize;
-               cout << endl;
-
-               if (capacity - queueSize < 0)
-               {
-                    throw e;
-               }
-          } while (capacity - queueSize < 0);
-     }
-     catch (ErrorHandler e)
-     {
-          e.limitCapacity();
-     }
+               cout << setw(40 + 42) << "Queue size cannot be more than the capacity";
+               cout << endl
+                    << endl;
+          }
+     } while (capacity - queueSize < 0);
 
      cout
          << setw(50 + 20) << "Booking Bumper Cars..." << endl;
@@ -309,26 +305,21 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
 {
 
      int queueSize = 0;
-     try
+
+     do
      {
-          do
+          cout
+              << setw(40 + 37) << "How many people will join the ride?: ";
+          cin >> queueSize;
+          cout << endl;
+
+          if (capacity - queueSize < 0)
           {
-
-               cout
-                   << setw(40 + 37) << "How many people will join the ride?: ";
-               cin >> queueSize;
-               cout << endl;
-
-               if (capacity - queueSize < 0)
-               {
-                    throw e;
-               }
-          } while (capacity - queueSize < 0);
-     }
-     catch (ErrorHandler e)
-     {
-          e.limitCapacity();
-     }
+               cout << setw(40 + 42) << "Queue size cannot be more than the capacity";
+               cout << endl
+                    << endl;
+          }
+     } while (capacity - queueSize < 0);
 
      cout << setw(50 + 20) << "Booking Carousel..." << endl;
      string idToken = token.generateUniqueToken();
@@ -352,26 +343,22 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
 void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
 {
      int queueSize = 0;
-     try
+
+     do
      {
-          do
+
+          cout
+              << setw(40 + 37) << "How many people will join the ride?: ";
+          cin >> queueSize;
+          cout << endl;
+
+          if (capacity - queueSize < 0)
           {
-
-               cout
-                   << setw(40 + 37) << "How many people will join the ride?: ";
-               cin >> queueSize;
-               cout << endl;
-
-               if (capacity - queueSize < 0)
-               {
-                    throw e;
-               }
-          } while (capacity - queueSize < 0);
-     }
-     catch (ErrorHandler e)
-     {
-          e.limitCapacity();
-     }
+               cout << setw(40 + 42) << "Queue size cannot be more than the capacity";
+               cout << endl
+                    << endl;
+          }
+     } while (capacity - queueSize < 0);
 
      cout << endl
           << setw(50 + 20) << "Booking Roller Coaster..." << endl;
