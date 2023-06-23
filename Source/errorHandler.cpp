@@ -8,7 +8,7 @@ void ErrorHandler::invalidInput()
 
 void ErrorHandler::limitCapacity()
 {
-    cout << setw(78) << "Sorry!, There is no available seat left!"
+    cout << setw(78) << "Sorry!, There is no available seat left!";
 }
 
 void ErrorHandler::fileError()
