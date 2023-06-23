@@ -185,7 +185,7 @@ void BroncoBistro::bookRestaurant()
             {
                 selectedFoodItems.push_back(foodItems[foodChoice - 1]);
             }
-            else
+            else if (foodChoice < 0)
             {
                 throw e;
             }
@@ -206,6 +206,7 @@ void BroncoBistro::bookRestaurant()
     vector<string> selectedBeverageItems;
     int beverageChoice;
     cout << endl;
+
     do
     {
         cout << setw(40 + 45) << "Select a beverage item (enter 0 to finish): ";
@@ -216,7 +217,7 @@ void BroncoBistro::bookRestaurant()
             {
                 selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
             }
-            else
+            else if (beverageChoice < 0)
             {
                 throw e;
             }
@@ -278,7 +279,7 @@ void EasternSpice::bookRestaurant()
             {
                 selectedFoodItems.push_back(foodItems[foodChoice - 1]);
             }
-            else
+            else if (foodChoice < 0)
             {
                 throw e;
             }
@@ -310,7 +311,7 @@ void EasternSpice::bookRestaurant()
             {
                 selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
             }
-            else
+            else if (beverageChoice < 0)
             {
                 throw e;
             }
@@ -360,7 +361,6 @@ void LaFiestaMexicana::bookRestaurant()
     cout << endl;
     vector<string> selectedFoodItems;
     int foodChoice;
-
     do
     {
         cout << setw(40 + 41) << "Select a food item (enter 0 to finish): ";
@@ -371,7 +371,7 @@ void LaFiestaMexicana::bookRestaurant()
             {
                 selectedFoodItems.push_back(foodItems[foodChoice - 1]);
             }
-            else
+            else if (foodChoice < 0)
             {
                 throw e;
             }
@@ -403,7 +403,7 @@ void LaFiestaMexicana::bookRestaurant()
             {
                 selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
             }
-            else
+            else if (beverageChoice < 0)
             {
                 throw e;
             }

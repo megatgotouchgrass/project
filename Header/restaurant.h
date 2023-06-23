@@ -19,8 +19,8 @@ protected:
     vector<float> foodPrices;
     vector<string> beverageItems;
     vector<float> beveragePrices;
-    float totalFoodPrice;
-    float totalBeveragePrice;
+    float totalFoodPrice = 0;
+    float totalBeveragePrice = 0;
 
 public:
     Restaurant(){};
