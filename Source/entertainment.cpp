@@ -246,8 +246,9 @@ void Entertainment::showBookings(Authentication &auth)
                // Display the booking information
                if (fields[0] == auth.getUsername())
                {
-                    cout << setw(40) << "Entertainment: " << fields[1] << "          ";
-                    cout << "Queue Time : " << fields[5];
+                    cout << setw(20) << "Entertainment: " << fields[1] << "          ";
+                    cout << "Queue Time : " << fields[5] << "          ";
+                    cout << "Ticket ID : " << fields[3];
                     cout << endl;
                }
           }
