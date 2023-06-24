@@ -246,8 +246,9 @@ void Entertainment::showBookings(Authentication &auth)
                // Display the booking information
                if (fields[0] == auth.getUsername())
                {
-                    cout << setw(20) << "Entertainment: " << fields[1] << "          ";
+                    cout << "Entertainment: " << fields[1] << "          ";
                     cout << "Queue Time : " << fields[5] << "          ";
+                    cout << "Time Booked: " << fields[4] << "          ";
                     cout << "Ticket ID : " << fields[3];
                     cout << endl;
                }
@@ -294,6 +295,9 @@ void BumperCars::bookEntertainment(int choice, Authentication &auth)
           bookingFile.close();                                                                                                                                                            // Close the booking file
           cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
           cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
+
+          cout << setw(58) << "You need to be there by " << time->getWaitingTime("BumperCars")
+               << endl;
      }
      else
      {
@@ -333,6 +337,8 @@ void Carousel::bookEntertainment(int choice, Authentication &auth)
           bookingFile.close();                                                                                                                                                       // Close the booking file
           cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
           cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
+          cout << setw(58) << "You need to be there by " << time->getWaitingTime("Carousel")
+               << endl;
      }
      else
      {
@@ -374,6 +380,8 @@ void RollerCoaster::bookEntertainment(int choice, Authentication &auth)
           bookingFile.close();                                                                                                                                                                  // Close the booking file
           cout << setw(48 + 19 + 10) << "Booking successful! Here is your Ticket ID: " << idToken << endl;
           cout << setw(48 + 19 + 13) << "Please scan it at the entrance of the ride!" << endl;
+          cout << setw(58) << "You need to be there by " << time->getWaitingTime("Roller Coaster")
+               << endl;
      }
      else
      {

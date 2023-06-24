@@ -185,7 +185,7 @@ void BroncoBistro::bookRestaurant()
             {
                 selectedFoodItems.push_back(foodItems[foodChoice - 1]);
             }
-            else if (foodChoice < 0)
+            else if (foodChoice < 0 || foodChoice > 3)
             {
                 throw e;
             }
@@ -217,7 +217,7 @@ void BroncoBistro::bookRestaurant()
             {
                 selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
             }
-            else if (beverageChoice < 0)
+            else if (beverageChoice < 0 || beverageChoice > 3)
             {
                 throw e;
             }
@@ -279,7 +279,7 @@ void EasternSpice::bookRestaurant()
             {
                 selectedFoodItems.push_back(foodItems[foodChoice - 1]);
             }
-            else if (foodChoice < 0)
+            else if (foodChoice < 0 || foodChoice > 3)
             {
                 throw e;
             }
@@ -311,7 +311,7 @@ void EasternSpice::bookRestaurant()
             {
                 selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
             }
-            else if (beverageChoice < 0)
+            else if (beverageChoice < 0 || beverageChoice > 3)
             {
                 throw e;
             }
@@ -371,7 +371,7 @@ void LaFiestaMexicana::bookRestaurant()
             {
                 selectedFoodItems.push_back(foodItems[foodChoice - 1]);
             }
-            else if (foodChoice < 0)
+            else if (foodChoice < 0 || foodChoice > 3)
             {
                 throw e;
             }
@@ -403,7 +403,7 @@ void LaFiestaMexicana::bookRestaurant()
             {
                 selectedBeverageItems.push_back(beverageItems[beverageChoice - 1]);
             }
-            else if (beverageChoice < 0)
+            else if (beverageChoice < 0 || beverageChoice > 3)
             {
                 throw e;
             }

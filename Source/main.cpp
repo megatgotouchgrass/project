@@ -74,7 +74,7 @@ int main()
         };
 
         cout << endl
-             << setw(80) << "Do you wish to go back to home menu? (y/n): ";
+             << setw(100) << "Do you wish to go back to home menu? (y) If you want to exit press any letter: ";
         cin >> systemRun;
 
     } while (systemRun == 'Y' || systemRun == 'y');

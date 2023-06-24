@@ -36,7 +36,7 @@ class BumperCars : public Entertainment
 {
 public:
     BumperCars();
-    void bookEntertainment(int choice, Authentication &auth); // polymorphism (redefined method)
+    void bookEntertainment(int choice, Authentication &auth); // polymorphism (overriden method)
 };
 
 class Carousel : public Entertainment
@@ -44,7 +44,7 @@ class Carousel : public Entertainment
 public:
     Carousel();
 
-    void bookEntertainment(int choice, Authentication &auth); // polymorphism (redefined method)
+    void bookEntertainment(int choice, Authentication &auth); // polymorphism (overriden method)
 };
 
 class RollerCoaster : public Entertainment
@@ -52,7 +52,7 @@ class RollerCoaster : public Entertainment
 public:
     RollerCoaster();
 
-    void bookEntertainment(int choice, Authentication &auth); // polymorphism (redefined method)
+    void bookEntertainment(int choice, Authentication &auth); // polymorphism (overriden method)
 };
 
 #endif
